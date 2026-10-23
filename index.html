@@ -18,7 +18,7 @@
             --accent-color: #b89b72;
             --oval-border: #d4c5b9;
             --button-dark: #6a1b29; /* البرغندي الفاخر */
-            --icon-wine-color: #6a1b29; /* البرغندي الفاخر */
+            --icon-wine-color: #6a1b29;
             --input-border: #e6d3d6;
             --label-color: #8c827a;
             --cover-bg: #eac8b8;
@@ -78,6 +78,7 @@
         @media (min-aspect-ratio: 9/16) {
             .app-container {
                 width: calc(100vh * (9 / 16));
+                width: calc(100dvh * (9 / 16));
                 height: 100vh;
                 height: 100dvh;
                 box-shadow: 0 0 50px rgba(0,0,0,0.8);
@@ -110,7 +111,7 @@
             opacity: 0.95;
         }
 
-        /* Scroll Animations Base Classes for General Sections */
+        /* Scroll Animations Base Classes */
         .reveal-element {
             opacity: 0;
             will-change: transform, opacity;
@@ -130,7 +131,7 @@
             transform: translate(0, 0) scale(1);
         }
 
-        /* 1. Intro Screen Container (Full Screen 100% غلاف أول) */
+        /* 1. Intro Screen Container */
         #intro-screen {
             position: absolute;
             inset: 0;
@@ -166,7 +167,7 @@
             pointer-events: none;
         }
 
-        /* 1.5 Language Selection Screen (شاشة اختيار اللغة مع دعم خلفية الصورة assets/lang-bg.png) */
+        /* 1.5 Language Selection Screen */
         #lang-screen {
             position: absolute;
             inset: 0;
@@ -310,7 +311,7 @@
         /* Scroll Down Indicator in Hero Banner */
         .scroll-down-indicator {
             position: absolute;
-            bottom: 8px;
+            bottom: max(12px, env(safe-area-inset-bottom, 8px));
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -1085,7 +1086,7 @@
         /* Music Floating Control */
         .music-control-btn {
             position: absolute;
-            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            bottom: max(20px, env(safe-area-inset-bottom, 20px));
             right: 15px;
             z-index: 999;
             width: 38px;
@@ -1176,14 +1177,14 @@
             </span>
         </button>
 
-        <!-- 1. Intro Screen Container (Full Screen 100%) -->
+        <!-- 1. Intro Screen Container -->
         <div id="intro-screen">
             <video id="intro-video" playsinline webkit-playsinline preload="auto" muted>
                 <source src="assets/intro.mp4" type="video/mp4">
             </video>
         </div>
 
-        <!-- 1.5 Language Selection Screen (شاشة اختيار اللغة مدعومة بخلفية assets/lang-bg.png) -->
+        <!-- 1.5 Language Selection Screen -->
         <div id="lang-screen">
             <div class="lang-title">Choose Language</div>
             <div class="lang-subtitle">Select your preferred language</div>
@@ -1217,7 +1218,7 @@
                         </div>
                     </div>
 
-                    <!-- The Wedding of (في المنتصف تماماً بين الآية واسم Dona) -->
+                    <!-- The Wedding of -->
                     <div class="event-family-blessing" data-en="The Wedding of" data-ml="വിവാഹം" data-hi="विवाह समारोह">
                         The Wedding of
                     </div>
@@ -1262,7 +1263,6 @@
                 <!-- تفاصيل الدعوة الكاملة والأسماء في قسم الترحيب -->
                 <div class="welcome-invitation-block reveal-element reveal-fade-up">
                     
-                    <!-- الـ floral-divider فوق جملة الدعوة -->
                     <div class="floral-divider-container" style="margin: 10px 0 12px 0;">
                         <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
                     </div>
@@ -1473,7 +1473,7 @@
                 <form class="rsvp-custom-form reveal-element reveal-fade-zoom" id="rsvpForm" onsubmit="handleRSVP(event)">
                     <div class="rsvp-field-group">
                         <label class="rsvp-field-label" for="input-name" data-en="Full Name *" data-ml="പൂർണ്ണ നാമം *" data-hi="पूरा नाम *">Full Name *</label>
-                        <input type="text" class="rsvp-input-box" id="input-name" name="Name" placeholder="Your Full Name" required>
+                        <input type="text" class="rsvp-input-box" id="input-name" name="Name" placeholder="Your Full Name" required data-ph-en="Your Full Name" data-ph-ml="നിങ്ങളുടെ മുഴുവൻ പേര്" data-ph-hi="आपका पूरा नाम">
                     </div>
 
                     <div class="rsvp-field-group">
@@ -1501,7 +1501,7 @@
 
                     <div class="rsvp-field-group">
                         <label class="rsvp-field-label" for="input-msg" data-en="Message for Couple (Optional)" data-ml="നവദമ്പതികൾക്കായുള്ള സന്ദേശം (ഓപ്ഷണൽ)" data-hi="दंपति के लिए संदेश (वैकल्पिक)">Message for Couple (Optional)</label>
-                        <textarea class="rsvp-input-box rsvp-textarea" id="input-msg" name="Message" placeholder="Send your warm wishes..."></textarea>
+                        <textarea class="rsvp-input-box rsvp-textarea" id="input-msg" name="Message" placeholder="Send your warm wishes..." data-ph-en="Send your warm wishes..." data-ph-ml="നിങ്ങളുടെ ആശംസകൾ അയക്കുക..." data-ph-hi="अपनी शुभकामनाएं भेजें..."></textarea>
                     </div>
 
                     <button type="submit" class="rsvp-submit-btn" id="submitBtn">
@@ -1537,13 +1537,15 @@
         let isStarted = false;
         let timerInterval = null;
 
+        const startEvents = ['pointerdown', 'touchstart', 'click'];
+
         window.addEventListener('DOMContentLoaded', () => {
             if (video) {
                 video.load();
             }
 
             if (introScreen) {
-                ['pointerdown', 'touchstart', 'click'].forEach(evt => {
+                startEvents.forEach(evt => {
                     introScreen.addEventListener(evt, startExperience, { passive: true, capture: true });
                 });
             }
@@ -1566,6 +1568,13 @@
             if (e && e.stopPropagation) e.stopPropagation();
             if (isStarted) return;
             isStarted = true;
+
+            // إزالة الأحداث مباشرة لتفادي تكرار التنفيذ أو تسريب الذاكرة
+            if (introScreen) {
+                startEvents.forEach(evt => {
+                    introScreen.removeEventListener(evt, startExperience, { capture: true });
+                });
+            }
 
             playAudioSafely();
 
@@ -1598,12 +1607,21 @@
         }
 
         function setLanguage(lang) {
-            // تحديث النصوص في جميع أقسام الصفحة بناءً على اللغة المختارة
+            // تحديث النصوص
             const elements = document.querySelectorAll('[data-en]');
             elements.forEach(el => {
                 const text = el.getAttribute(`data-${lang}`);
                 if (text) {
                     el.innerHTML = text;
+                }
+            });
+
+            // تحديث הـ Placeholders لنموذج الـ RSVP
+            const phElements = document.querySelectorAll('[data-ph-en]');
+            phElements.forEach(el => {
+                const phText = el.getAttribute(`data-ph-${lang}`);
+                if (phText) {
+                    el.setAttribute('placeholder', phText);
                 }
             });
 
@@ -1635,7 +1653,6 @@
 
             initScrollAnimations();
             
-            // تحميل الخريطة فوراً عند الدخول لمنع أي تأخير في الظهور عند التمرير
             loadMapIframe('map-wrapper-1', "St.+Thomas+Forane+Church+Velichiyani+Kanjirappally");
         }
 
@@ -1716,7 +1733,10 @@
                 if (minutesEl) minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
                 if (secondsEl) secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
             } else {
-                if (timerInterval) clearInterval(timerInterval);
+                if (timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
                 const container = document.querySelector(".countdown-container-oval");
                 if (container) {
                     container.innerHTML = `<p style='color:#3b352e;'>Welcome to our wedding day!</p>`;
