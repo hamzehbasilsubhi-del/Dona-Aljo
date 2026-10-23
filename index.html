@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Wedding Invitation | Dona &amp; Aljo</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Monsieur+La+Doulaise&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #7d6340;
+            --bg-color: #f7f4f0;
+            --card-bg: #ffffff;
+            --text-color: #4a4a4a;
+            --accent-color: #b89b72;
+            --oval-border: #d4c5b9;
+            --button-dark: #6a1b29; /* البرغندي الفاخر */
+            --icon-wine-color: #6a1b29; /* البرغندي الفاخر */
+            --input-border: #e6d3d6;
+            --label-color: #8c827a;
+            --cover-bg: #eac8b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 300;
+            font-size: 0.92rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Alex Brush', cursive !important;
+            font-weight: 400 !important;
+            letter-spacing: 1px;
+        }
+
+        .script-font {
+            font-family: 'Monsieur La Doulaise', cursive;
+        }
+
+        /* تثبيت عرض الشاشة والـ Full Screen تماماً للجوال والشاشات الكبيرة */
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background-color: #111111;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: fixed;
+            inset: 0;
+        }
+
+        /* الحاوية الرئيسية بنسبة 9:16 وملء الشاشة المطلق */
+        .app-container {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            max-width: 100vw;
+            max-height: 100vh;
+            max-height: 100dvh;
+            background: var(--bg-color);
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 0;
+        }
+
+        @media (min-aspect-ratio: 9/16) {
+            .app-container {
+                width: calc(100vh * (9 / 16));
+                height: 100vh;
+                height: 100dvh;
+                box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 450px;
+                max-height: 880px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Unified Section Logo Styling */
+        .unified-section-logo {
+            width: 130px;
+            max-width: 45%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            object-fit: contain;
+            opacity: 0.92;
+        }
+
+        .hero-banner .unified-section-logo {
+            filter: brightness(0) invert(1);
+            -webkit-filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+
+        /* Scroll Animations Base Classes for General Sections */
+        .reveal-element {
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-fade-up {
+            transform: translateY(35px);
+        }
+
+        .reveal-fade-zoom {
+            transform: scale(0.88);
+        }
+
+        .reveal-element.active {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* 1. Intro Screen Container (Full Screen 100% غلاف أول) */
+        #intro-screen {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            background-color: #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            cursor: pointer;
+            touch-action: manipulation;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #intro-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #intro-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* 1.5 Language Selection Screen (شاشة اختيار اللغة مع دعم خلفية الصورة assets/lang-bg.png) */
+        #lang-screen {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9500;
+            background: linear-gradient(rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.85)), url('assets/lang-bg.png') no-repeat center center;
+            background-size: cover;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        #lang-screen.visible {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lang-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .lang-title {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .lang-subtitle {
+            font-size: 0.82rem;
+            color: #d4c5b9;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 35px;
+            font-family: 'Playfair Display', Georgia, serif;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .lang-buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .lang-btn {
+            background-color: rgba(20, 20, 20, 0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(212, 197, 185, 0.4);
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', Georgia, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .lang-btn:hover, .lang-btn:active {
+            background-color: var(--button-dark);
+            border-color: var(--button-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 27, 41, 0.4);
+        }
+
+        /* 2. Main Content */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            padding-bottom: 40px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        #main-content.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            min-height: 650px;
+            background: #111111;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: max(35px, env(safe-area-inset-top, 25px)) 15px max(45px, env(safe-area-inset-bottom, 25px)) 15px;
+            color: #ffffff;
+            text-align: center;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+        /* Scroll Down Indicator in Hero Banner */
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            z-index: 5;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            animation: bounceDown 2s infinite;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-down-text {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .scroll-down-arrow {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(5px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(2px);
+            }
+        }
+
+        /* تنسيق الآية الإنجيلية في البانر الرئيسي */
+        .hero-bible-verse {
+            font-size: 0.76rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.88);
+            margin-top: 2px;
+            margin-bottom: 2px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            max-width: 330px;
+        }
+
+        .hero-bible-reference {
+            font-size: 0.68rem;
+            color: #e5d8cc;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* جملة The Wedding of متمركزة تماماً بالمنتصف بين الآية وأسماء العروسين */
+        .event-family-blessing {
+            font-size: 1.05rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.95);
+            font-family: 'Playfair Display', Georgia, serif;
+            max-width: 340px;
+            margin-top: 0;
+            margin-bottom: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .couple-names-title {
+            font-family: 'Monsieur La Doulaise', cursive !important;
+            font-size: 3.3rem;
+            font-weight: 400 !important;
+            color: #ffffff;
+            line-height: 1.1;
+            margin: 4px 0;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+            letter-spacing: 1.5px;
+        }
+
+        .couple-names-amp {
+            font-family: 'Monsieur La Doulaise', cursive !important;
+            font-weight: 400 !important;
+            font-size: 2.3rem;
+            color: #e5d8cc;
+            display: block;
+            margin: 2px 0;
+        }
+
+        .banner-divider {
+            width: 60px;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.4);
+            margin: 6px auto;
+        }
+
+        .wedding-day {
+            font-size: 1rem;
+            margin-bottom: 2px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .wedding-date-num {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 12px;
+        }
+
+        /* Welcome Message Section */
+        .welcome-section {
+            padding: 35px 20px 18px 20px;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .welcome-img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 16px auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .welcome-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #3b352e;
+            max-width: 360px;
+            margin: 0 auto 14px auto;
+            font-style: italic;
+        }
+
+        .welcome-invitation-block {
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        .welcome-event-family-blessing {
+            font-size: 0.84rem;
+            line-height: 1.5;
+            color: #554d45;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', Georgia, serif;
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .welcome-parents-names-block {
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 0.70rem;
+            line-height: 1.5;
+            color: #7d6340;
+            margin: 4px 0 8px 0;
+            font-weight: 500 !important;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .welcome-couple-names-title {
+            font-family: 'Monsieur La Doulaise', cursive !important;
+            font-size: 2.8rem;
+            font-weight: 400 !important;
+            color: #3b352e;
+            line-height: 1.15;
+            margin: 4px 0;
+            letter-spacing: 1px;
+        }
+
+        .welcome-couple-names-amp {
+            font-family: 'Monsieur La Doulaise', cursive !important;
+            font-weight: 400 !important;
+            font-size: 2.1rem;
+            color: #7d6340;
+            display: block;
+            margin: 2px 0;
+        }
+
+        .welcome-date-time {
+            font-size: 0.8rem;
+            color: #8c827a;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-family: 'Playfair Display', Georgia, serif;
+            margin-top: 15px;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            padding: 18px 10px;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .countdown-main-title {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 2.5rem;
+            color: #3b352e;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: 400 !important;
+        }
+
+        .countdown-container-oval {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .oval-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            max-width: 70px;
+        }
+
+        .oval-box {
+            width: 52px;
+            height: 70px;
+            border-radius: 50%;
+            border: 1px solid var(--oval-border);
+            background-color: #faf7f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.01);
+        }
+
+        .oval-number {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 1.6rem;
+            color: #2c2520;
+            line-height: 1;
+        }
+
+        .oval-label {
+            font-size: 0.68rem;
+            color: #8c827a;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .star-divider {
+            color: #e5d8cc;
+            font-size: 0.5rem;
+            margin-top: -20px;
+        }
+
+        /* Dividers */
+        .divider-container {
+            width: 100%;
+            text-align: center;
+            padding: 8px 0;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .divider-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .section-padding {
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        /* Event Details */
+        .event-details-header {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .event-details-title {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 2.6rem;
+            color: #3b352e;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            line-height: 1.2;
+            font-weight: 400 !important;
+        }
+
+        .event-details-subtitle {
+            font-size: 0.78rem;
+            color: #aa9275;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .floral-divider-container {
+            text-align: center;
+            margin: 15px 0 14px 0;
+        }
+
+        .floral-divider-img {
+            max-width: 160px;
+            width: 60%;
+            height: auto;
+            display: inline-block;
+            opacity: 0.95;
+        }
+
+        /* Venue Icon */
+        .venue-icon-top-img {
+            width: 270px;
+            max-width: 92%;
+            height: auto;
+            margin: 10px auto 18px auto;
+            display: block;
+            opacity: 0.95;
+        }
+
+        .venue-name-block {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .venue-title-main {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #3b352e;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+
+        .venue-location-sub {
+            font-size: 0.78rem;
+            color: #8c827a;
+            letter-spacing: 0.8px;
+            font-family: 'Playfair Display', Georgia, serif;
+            line-height: 1.4;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+
+        .map-card-framed {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 6px;
+            border: 1px solid #e8e2d9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 16px;
+            contain: content;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #e5e3df;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .action-buttons-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 10px 10px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .btn-maps {
+            background-color: var(--button-dark);
+            color: #ffffff;
+            border: 1px solid var(--button-dark);
+        }
+
+        /* Family Contact Section Styles */
+        .family-contact-section {
+            padding: 25px 20px;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .family-contact-icon-img {
+            width: 140px;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto 12px auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .family-contact-title {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 2.6rem;
+            color: #3b352e;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 400 !important;
+        }
+
+        .contact-cards-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: #ffffff;
+            border: 1px solid #e8e2d9;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-role {
+            font-size: 0.78rem;
+            color: #8c827a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', Georgia, serif;
+            margin-bottom: 2px;
+        }
+
+        .contact-phone-num {
+            font-size: 0.9rem;
+            color: #3b352e;
+            font-weight: 500;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .contact-call-btn {
+            background-color: var(--button-dark);
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-call-btn:hover {
+            opacity: 0.9;
+        }
+
+        .contact-call-btn .svg-icon {
+            width: 15px;
+            height: 15px;
+            fill: #ffffff;
+        }
+
+        /* Combined Blessings & Bible Quotes Section Styles */
+        .blessings-bible-section {
+            padding: 25px 20px;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .blessings-icon-img {
+            width: 140px;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto 12px auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .blessings-bible-title {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 2.6rem;
+            color: #3b352e;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            font-weight: 400 !important;
+        }
+
+        .blessings-bible-subtitle {
+            font-size: 0.78rem;
+            color: #aa9275;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'Playfair Display', Georgia, serif;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .blessings-details-box {
+            max-width: 340px;
+            margin: 0 auto 16px auto;
+            font-family: 'Playfair Display', Georgia, serif;
+            color: #4a4a4a;
+        }
+
+        .blessings-subheading {
+            font-size: 0.8rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #7d6340;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .blessings-names-text {
+            font-size: 0.85rem;
+            color: #554d45;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        .bible-quote-box {
+            background: #ffffff;
+            border: 1px solid #e8e2d9;
+            border-radius: 8px;
+            padding: 16px 20px;
+            max-width: 340px;
+            margin: 0 auto;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .bible-quote-text {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #3b352e;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .bible-quote-reference {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.78rem;
+            color: #8c827a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* RSVP Section */
+        .rsvp-section-container {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .chair-icon-img {
+            width: 150px;
+            max-width: 55%;
+            height: auto;
+            margin: 0 auto 12px auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .rsvp-main-title {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 2.6rem;
+            color: #3b352e;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            font-weight: 400 !important;
+        }
+
+        .rsvp-subtext-1 {
+            font-size: 0.78rem;
+            color: #a39284;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .rsvp-custom-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .rsvp-field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
+        }
+
+        .rsvp-field-label {
+            font-size: 0.75rem;
+            color: #8c827a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .rsvp-input-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--input-border);
+            border-radius: 2px;
+            font-size: 0.8rem;
+            background-color: #faf7f5;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+            text-align: left;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .rsvp-input-box:focus {
+            border-color: var(--button-dark);
+        }
+
+        .rsvp-input-box::placeholder {
+            color: #c4b8ad;
+        }
+
+        .rsvp-counter-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--input-border);
+            border-radius: 2px;
+            background-color: #faf7f5;
+            overflow: hidden;
+        }
+
+        .rsvp-counter-btn {
+            background-color: #f0e8e2;
+            color: var(--button-dark);
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            user-select: none;
+        }
+
+        .rsvp-counter-btn:hover {
+            background-color: #e5dacd;
+        }
+
+        .rsvp-counter-input {
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 0.82rem;
+            color: #333;
+            width: 100%;
+            outline: none;
+            font-weight: 500;
+            -moz-appearance: textfield;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .rsvp-counter-input::-webkit-outer-spin-button,
+        .rsvp-counter-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .rsvp-radio-options {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 18px;
+            margin-top: 4px;
+        }
+
+        .rsvp-radio-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: #8c827a;
+            cursor: pointer;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .rsvp-radio-item input[type="radio"] {
+            accent-color: var(--button-dark);
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .rsvp-textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .rsvp-submit-btn {
+            background-color: var(--button-dark);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+            transition: opacity 0.3s ease;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .rsvp-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .rsvp-submit-btn:hover:not(:disabled) {
+            opacity: 0.92;
+        }
+
+        /* Music Floating Control */
+        .music-control-btn {
+            position: absolute;
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            right: 15px;
+            z-index: 999;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--button-dark);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .music-control-btn:active {
+            transform: scale(0.92);
+        }
+
+        /* SVG Icons */
+        .svg-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .btn-maps .svg-icon {
+            fill: #ffffff;
+        }
+
+        .music-control-btn .svg-icon {
+            fill: #ffffff;
+            width: 15px;
+            height: 15px;
+        }
+
+        /* Footer Logo & Date */
+        .bottom-logo-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .bottom-logo-img {
+            width: 70px;
+            height: auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .bottom-event-date {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 0.78rem;
+            color: #a39284;
+            letter-spacing: 2px;
+        }
+
+        .blessing-footer-text {
+            font-family: 'Alex Brush', cursive !important;
+            font-size: 1.6rem;
+            color: #8c827a;
+            text-align: center;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            font-weight: 400 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container" id="app-viewport">
+
+        <!-- Background Audio -->
+        <audio id="bg-audio" loop preload="auto" playsinline>
+            <source src="assets/bg-music.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Music Toggle Floating Button -->
+        <button id="music-toggle-btn" class="music-control-btn" onclick="toggleAudio()" title="Play / Pause Audio" aria-label="Toggle Background Music">
+            <span id="music-icon-container">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </span>
+        </button>
+
+        <!-- 1. Intro Screen Container (Full Screen 100%) -->
+        <div id="intro-screen">
+            <video id="intro-video" playsinline webkit-playsinline preload="auto" muted>
+                <source src="assets/intro.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- 1.5 Language Selection Screen (شاشة اختيار اللغة مدعومة بخلفية assets/lang-bg.png) -->
+        <div id="lang-screen">
+            <div class="lang-title">Choose Language</div>
+            <div class="lang-subtitle">Select your preferred language</div>
+            <div class="lang-buttons-container">
+                <button class="lang-btn" onclick="setLanguage('en')">English</button>
+                <button class="lang-btn" onclick="setLanguage('ml')">മലയാളം (Malayalam)</button>
+                <button class="lang-btn" onclick="setLanguage('hi')">हिन्दी (Hindi)</button>
+            </div>
+        </div>
+
+        <!-- 2. Main Content Page -->
+        <div id="main-content">
+            
+            <!-- Hero Banner -->
+            <div class="hero-banner">
+                <video class="hero-video" autoplay loop muted playsinline webkit-playsinline preload="auto">
+                    <source src="assets/hero.mp4" type="video/mp4">
+                </video>
+
+                <div class="hero-overlay">
+                    <!-- الشعار -->
+                    <img src="assets/couple-logo.png" alt="Couple DA Logo" class="unified-section-logo">
+
+                    <!-- الآية الإنجيلية -->
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="hero-bible-verse" data-en='"For this reason a man will leave his father and mother and be united to his wife, and the two will become one flesh."' data-ml='"ഈ കാരണത്താൽ ഒരു മനുഷ്യൻ തന്റെ മാതാപിതാക്കളെ വിട്ടു ഭാര്യയോട് ചേർന്നുനിൽക്കും, ആ രണ്ടുപേരും ഒരു ശരീരമായിത്തീരും."' data-hi='"इस कारण मनुष्य अपने माता-पिता को छोड़कर अपनी पत्नी से मिला रहेगा, और वे दोनों एक तन हो जाएंगे।"'>
+                            "For this reason a man will leave his father and mother and be united to his wife, and the two will become one flesh."
+                        </div>
+                        <div class="hero-bible-reference">
+                            Ephesians 5:31
+                        </div>
+                    </div>
+
+                    <!-- The Wedding of (في المنتصف تماماً بين الآية واسم Dona) -->
+                    <div class="event-family-blessing" data-en="The Wedding of" data-ml="വിവാഹം" data-hi="विवाह समारोह">
+                        The Wedding of
+                    </div>
+
+                    <!-- أسماء العروسين -->
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="couple-names-title">
+                            Dona
+                        </div>
+                        
+                        <div class="couple-names-amp">
+                            &amp;
+                        </div>
+
+                        <div class="couple-names-title">
+                            Aljo
+                        </div>
+                    </div>
+
+                    <!-- الخط الفاصل واليوم والتاريخ -->
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="banner-divider"></div>
+                        <div class="wedding-day" data-en="Thursday" data-ml="വ്യാഴാഴ്ച" data-hi="गुरुवार">Thursday</div>
+                        <div class="wedding-date-num">31.12.2026</div>
+                    </div>
+
+                    <!-- Scroll Down Indicator -->
+                    <div class="scroll-down-indicator" onclick="scrollToWelcome()">
+                        <span class="scroll-down-text" data-en="Scroll Down" data-ml="താഴേക്ക് സ്ക്രൂൾ ചെയ്യുക" data-hi="नीचे स्क्रॉल करें">Scroll Down</span>
+                        <svg class="scroll-down-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome / Message Section -->
+            <div class="welcome-section" id="welcome-section">
+                <img src="assets/window-flowers.png" alt="Flowers Frame Window" class="welcome-img reveal-element reveal-fade-up">
+                <p class="welcome-text reveal-element reveal-fade-up" data-en='"Two lives, two hearts, joined together in friendship, united forever in love. We are overjoyed to invite you to share in our joy as we begin this new chapter."' data-ml='"രണ്ട് ജീവിതങ്ങൾ, രണ്ട് ഹൃദയങ്ങൾ, സൗഹൃദത്തിൽ ഒന്നിച്ച്, സ്നേഹത്തിൽ എന്നേക്കുമായി ഒന്നിക്കുന്നു. ഞങ്ങളുടെ ഈ പുതിയ അധ്യായത്തിലേക്ക് നിങ്ങളെ സന്തോഷത്തോടെ സ്വാഗതം ചെയ്യുന്നു."' data-hi='"दो जीवन, दो दिल, मित्रता में जुड़े, प्रेम में हमेशा के लिए एकजुट। हम इस नए अध्याय की शुरुआत में अपनी खुशी में शामिल होने के लिए आपको आमंत्रित करते हैं।"'>
+                    "Two lives, two hearts, joined together in friendship, united forever in love. We are overjoyed to invite you to share in our joy as we begin this new chapter."
+                </p>
+
+                <!-- تفاصيل الدعوة الكاملة والأسماء في قسم الترحيب -->
+                <div class="welcome-invitation-block reveal-element reveal-fade-up">
+                    
+                    <!-- الـ floral-divider فوق جملة الدعوة -->
+                    <div class="floral-divider-container" style="margin: 10px 0 12px 0;">
+                        <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
+                    </div>
+
+                    <div class="welcome-event-family-blessing" data-en="Together with their families, cordially invite you to celebrate their wedding" data-ml="കുടുംബാംഗങ്ങളുടെ സാന്നിധ്യത്തിലും അനുഗ്രഹത്തിലും ഞങ്ങളുടെ വിവാഹ ചടങ്ങിലേക്ക് നിങ്ങളെ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു" data-hi="अपने परिवार के साथ, आपको हमारे विवाह समारोह में शामिल होने के लिए सप्रेम आमंत्रण देते हैं">
+                        Together with their families, cordially invite you to celebrate their wedding
+                    </div>
+
+                    <div class="welcome-couple-names-title">
+                        Dona Xavier
+                    </div>
+
+                    <div class="welcome-parents-names-block" data-en="Mr. Xavier Joseph &amp; Lillykutty Xavier<br>Edackattu House, Pazhayidom" data-ml="മിസ്റ്റർ സേവ്യർ ജോസഫ് &amp; ലില്ലിക്കുട്ടി സേവ്യർ<br>എടക്കാട്ട് വീട്, പഴയീടം" data-hi="श्री ज़ेवियर जोसेफ और लिलीकुट्टी ज़ेवियर<br>एड़ाकाट्टू हाउस, पझैयाडोम">
+                        Mr. Xavier Joseph &amp; Lillykutty Xavier<br>Edackattu House, Pazhayidom
+                    </div>
+                    
+                    <div class="welcome-couple-names-amp">
+                        &amp;
+                    </div>
+
+                    <div class="welcome-couple-names-title">
+                        Aljo Ben Abraham
+                    </div>
+
+                    <div class="welcome-parents-names-block" data-en="Mr. Benny Joseph &amp; Bincy Benny<br>Palathinal House, Velichiyani" data-ml="മിസ്റ്റർ ബെന്നി ജോസഫ് &amp; ബിൻസി ബെന്നി<br>പാലത്തിനാൽ വീട്, വെളിച്ചിയാനി" data-hi="श्री बेनी जोसेफ और बिंसी बेनी<br>पलाथिनाल हाउस, वेलिचियानी">
+                        Mr. Benny Joseph &amp; Bincy Benny<br>Palathinal House, Velichiyani
+                    </div>
+                </div>
+
+                <div class="welcome-date-time reveal-element reveal-fade-up" data-en="Thursday, 31 December 2026" data-ml="വ്യാഴാഴ്ച, 2026 ഡിസംബർ 31" data-hi="गुरुवार, 31 दिसंबर 2026">
+                    Thursday, 31 December 2026
+                </div>
+            </div>
+
+            <!-- Countdown Section -->
+            <div class="countdown-section">
+                <div class="floral-divider-container reveal-element reveal-fade-zoom" style="margin: 0 0 16px 0;">
+                    <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
+                </div>
+                
+                <div class="countdown-main-title reveal-element reveal-fade-up" data-en="Counting Down To The Big Day" data-ml="വലിയ ദിവസത്തിലേക്കുള്ള കാത്തിരിപ്പ്" data-hi="बड़े दिन का इंतज़ार">Counting Down To The Big Day</div>
+                
+                <div class="countdown-container-oval reveal-element reveal-fade-up">
+                    <div class="oval-wrapper">
+                        <div class="oval-box">
+                            <span class="oval-number" id="days">00</span>
+                        </div>
+                        <span class="oval-label" data-en="Days" data-ml="ദിവസങ്ങൾ" data-hi="दिन">Days</span>
+                    </div>
+
+                    <div class="star-divider">◆</div>
+
+                    <div class="oval-wrapper">
+                        <div class="oval-box">
+                            <span class="oval-number" id="hours">00</span>
+                        </div>
+                        <span class="oval-label" data-en="Hours" data-ml="മണിക്കൂർ" data-hi="घंटे">Hours</span>
+                    </div>
+
+                    <div class="star-divider">◆</div>
+
+                    <div class="oval-wrapper">
+                        <div class="oval-box">
+                            <span class="oval-number" id="minutes">00</span>
+                        </div>
+                        <span class="oval-label" data-en="Minutes" data-ml="മിനിറ്റ്" data-hi="मिनट">Minutes</span>
+                    </div>
+
+                    <div class="star-divider">◆</div>
+
+                    <div class="oval-wrapper">
+                        <div class="oval-box">
+                            <span class="oval-number" id="seconds">00</span>
+                        </div>
+                        <span class="oval-label" data-en="Seconds" data-ml="സെക്കൻഡ്" data-hi="सेकंड">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clock Divider -->
+            <div class="divider-container reveal-element reveal-fade-zoom">
+                <img src="assets/divider-clock.png" alt="Divider" class="divider-img">
+            </div>
+
+            <!-- Wedding Ceremony Section -->
+            <div class="section-padding">
+                <div class="event-details-header reveal-element reveal-fade-up">
+                    <div class="event-details-title" data-en="Wedding Ceremony" data-ml="വിവാഹ ചടങ്ങ്" data-hi="विवाह समारोह">Wedding Ceremony</div>
+                    <div class="event-details-subtitle" data-en="31-Dec-2026 • 11:00 AM" data-ml="31-ഡിസംബർ-2026 • രാവിലെ 11:00" data-hi="31-दिसंबर-2026 • सुबह 11:00 बजे">31-Dec-2026 • 11:00 AM</div>
+                </div>
+
+                <div class="floral-divider-container reveal-element reveal-fade-zoom">
+                    <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
+                </div>
+
+                <img src="assets/venue-icon.png" alt="Venue Icon" class="venue-icon-top-img reveal-element reveal-fade-up">
+
+                <div class="venue-name-block reveal-element reveal-fade-up">
+                    <div class="venue-title-main" data-en="St. Thomas Forane Church, Velichiyani" data-ml="സെന്റ് തോമസ് ഫോറേൻ പള്ളി, വെളിച്ചിയാനി" data-hi="सेंट थॉमस फोराने चर्च, वेलिचियानी">St. Thomas Forane Church, Velichiyani</div>
+                    <div class="venue-location-sub" data-en="Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India" data-ml="കോട്ടയം - കുമിളി റോഡ്, കാഞ്ഞിരപ്പള്ളി, കേരളം 686512, ഇന്ത്യ" data-hi="कोट्टायम - कुमिली रोड, कांजीरप्पल्ली, केरल 686512, भारत">Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India</div>
+                </div>
+
+                <div class="map-card-framed reveal-element reveal-fade-zoom" id="map-container-1">
+                    <div class="map-wrapper" id="map-wrapper-1">
+                    </div>
+                </div>
+
+                <div class="action-buttons-group reveal-element reveal-fade-up">
+                    <a href="https://maps.google.com/?q=St.+Thomas+Forane+Church+Velichiyani+Kanjirappally" target="_blank" rel="noopener noreferrer" class="action-btn btn-maps">
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        <span data-en="Open Church Map" data-ml="പള്ളി മാപ്പ് തുറക്കുക" data-hi="चर्च का नक्शा खोलें">Open Church Map</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Reception Section -->
+            <div class="section-padding">
+                <div class="event-details-header reveal-element reveal-fade-up">
+                    <div class="event-details-title" data-en="Reception" data-ml="റിसेप्शन" data-hi="स्वागत समारोह">Reception</div>
+                    <div class="event-details-subtitle" data-en="31-Dec-2026 • 1:00 PM" data-ml="31-ഡിസംബർ-2026 • ഉച്ചയ്ക്ക് 1:00" data-hi="31-दिसंबर-2026 • दोपहर 1:00 बजे">31-Dec-2026 • 1:00 PM</div>
+                </div>
+
+                <div class="floral-divider-container reveal-element reveal-fade-zoom">
+                    <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
+                </div>
+
+                <img src="assets/reception-icon.png" alt="Reception Venue Icon" class="venue-icon-top-img reveal-element reveal-fade-up">
+
+                <div class="venue-name-block reveal-element reveal-fade-up">
+                    <div class="venue-title-main" data-en="St. Thomas Parish Hall, Velichiyani" data-ml="സെന്റ് തോമസ് പാരിഷ് ഹാൾ, വെളിച്ചിയാനി" data-hi="सेंट थॉमस पैश हॉल, वेलिचियानी">St. Thomas Parish Hall, Velichiyani</div>
+                    <div class="venue-location-sub" data-en="Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India" data-ml="കോട്ടയം - കുമിളി റോഡ്, കാഞ്ഞിരപ്പള്ളി, കേരളം 686512, ഇന്ത്യ" data-hi="कोट्टायम - कुमिली रोड, कांजीरप्पल्ली, केरल 686512, भारत">Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India</div>
+                </div>
+
+                <div class="action-buttons-group reveal-element reveal-fade-up">
+                    <a href="https://maps.google.com/?q=St.+Thomas+Parish+Hall+Velichiyani+Kanjirappally" target="_blank" rel="noopener noreferrer" class="action-btn btn-maps">
+                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        <span data-en="Open Hall Map" data-ml="ഹാൾ മാപ്പ് തുറക്കുക" data-hi="हॉल का नक्शा खोलें">Open Hall Map</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Combined Blessings & Bible Quotes Section -->
+            <div class="blessings-bible-section">
+                <img src="assets/blessings-icon.png" alt="Blessings Icon" class="blessings-icon-img reveal-element reveal-fade-zoom">
+                
+                <div class="blessings-bible-title reveal-element reveal-fade-up" data-en="Best Compliments" data-ml="ആശംസകളോടെ" data-hi="शुभकामनाएं">Best Compliments</div>
+                <div class="blessings-bible-subtitle reveal-element reveal-fade-up" data-en="WITH LOVE &amp; BLESSINGS" data-ml="സ്നേഹത്തോടും അനുഗ്രഹത്തോടും കൂടി" data-hi="प्यार और आशीर्वाद के साथ">WITH LOVE &amp; BLESSINGS</div>
+
+                <div class="blessings-details-box reveal-element reveal-fade-up">
+                    <div class="blessings-subheading" data-en="Our Beloved Brothers" data-ml="ഞങ്ങളുടെ പ്രിയ സഹോദരങ്ങൾ" data-hi="हमारे प्यारे भाई">Our Beloved Brothers</div>
+                    <div class="blessings-names-text">
+                        Ajay Ben Abraham
+                        Tony Xavier
+                    </div>
+
+                    <div class="blessings-subheading" style="margin-top: 14px;" data-en="Our Beloved Sister &amp; Family" data-ml="പ്രിയ സഹോദരിയും കുടുംബവും" data-hi="हमारी प्यारी बहन और परिवार">Our Beloved Sister &amp; Family</div>
+                    <div class="blessings-names-text">
+                        Sona Xavier
+                        Manu Mathew
+                        Dan Manu
+                    </div>
+                </div>
+
+                <div class="bible-quote-box reveal-element reveal-fade-up" style="margin-top: 16px;">
+                    <p class="bible-quote-text" data-en='"And over all these virtues put on love, which binds them all together in perfect unity."' data-ml='"ഇല്ലാതെയെല്ലാം ഉപരിയായി സ്നേഹം ധരിക്കുക; അത് സമ്പൂർണ്ണ ഐക്യത്തിൽ അവയെല്ലാം ബന്ധിപ്പിക്കുന്നു."' data-hi='"इन सब के ऊपर प्रेम को जो सिद्ध एकता का कटिबन्ध है, बाँध लो।"'>
+                        "And over all these virtues put on love, which binds them all together in perfect unity."
+                    </p>
+                    <div class="bible-quote-reference">Colossians 3:14</div>
+                </div>
+            </div>
+
+            <!-- Family Contact Section -->
+            <div class="family-contact-section">
+                <img src="assets/contact-icon.png" alt="Family Contact Icon" class="family-contact-icon-img reveal-element reveal-fade-zoom">
+                
+                <div class="family-contact-title reveal-element reveal-fade-up" data-en="Family Contact" data-ml="കുടുംബ ബന്ധപ്പെടാൻ" data-hi="पारिवारिक संपर्क">Family Contact</div>
+
+                <div class="contact-cards-wrapper reveal-element reveal-fade-up">
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-role" data-en="Father of Bride" data-ml="വധുവിന്റെ പിതാവ്" data-hi="दुल्हन के पिता">Father of Bride</div>
+                            <a href="tel:+919497820666" class="contact-phone-num">+91 9497820666</a>
+                        </div>
+                        <a href="tel:+919497820666" class="contact-call-btn" title="Call Father of Bride" aria-label="Call Father of Bride">
+                            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-role" data-en="Father of Groom" data-ml="വരന്റെ പിതാവ്" data-hi="दूल्हे के पिता">Father of Groom</div>
+                            <a href="tel:+919447151935" class="contact-phone-num">+91 94471 51935</a>
+                        </div>
+                        <a href="tel:+919447151935" class="contact-call-btn" title="Call Father of Groom" aria-label="Call Father of Groom">
+                            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSVP Section -->
+            <div class="rsvp-section-container">
+                <img src="assets/chair-icon.png" alt="Chair Icon" class="chair-icon-img reveal-element reveal-fade-zoom">
+                
+                <div class="rsvp-main-title reveal-element reveal-fade-up">RSVP</div>
+                <div class="rsvp-subtext-1 reveal-element reveal-fade-up" data-en="Kindly respond before 15th December" data-ml="ഡിസംബർ 15-നകം മറുപടി അറിയിക്കുക" data-hi="कृपया 15 दिसंबर से पहले उत्तर दें">Kindly respond before 15th December</div>
+
+                <form class="rsvp-custom-form reveal-element reveal-fade-zoom" id="rsvpForm" onsubmit="handleRSVP(event)">
+                    <div class="rsvp-field-group">
+                        <label class="rsvp-field-label" for="input-name" data-en="Full Name *" data-ml="പൂർണ്ണ നാമം *" data-hi="पूरा नाम *">Full Name *</label>
+                        <input type="text" class="rsvp-input-box" id="input-name" name="Name" placeholder="Your Full Name" required>
+                    </div>
+
+                    <div class="rsvp-field-group">
+                        <label class="rsvp-field-label" for="input-guests" data-en="Number Of Guests *" data-ml="അതിഥികളുടെ എണ്ണം *" data-hi="अतिथियों की संख्या *">Number Of Guests *</label>
+                        <div class="rsvp-counter-box">
+                            <button type="button" class="rsvp-counter-btn" onclick="decrementGuests()">-</button>
+                            <input type="number" class="rsvp-counter-input" id="input-guests" name="Guests" value="1" min="1" required placeholder="Number of guests">
+                            <button type="button" class="rsvp-counter-btn" onclick="incrementGuests()">+</button>
+                        </div>
+                    </div>
+
+                    <div class="rsvp-field-group">
+                        <label class="rsvp-field-label" data-en="Will You Attend? *" data-ml="നിങ്ങൾ പങ്കെടുക്കുമോ? *" data-hi="क्या आप शामिल होंगे? *">Will You Attend? *</label>
+                        <div class="rsvp-radio-options">
+                            <label class="rsvp-radio-item">
+                                <input type="radio" name="Attendance" value="Joyfully Accept" checked required>
+                                <span data-en="Joyfully Accept" data-ml="സന്തോഷത്തോടെ സ്വീകരിക്കുന്നു" data-hi="आनंदपूर्वक स्वीकार करते हैं">Joyfully Accept</span>
+                            </label>
+                            <label class="rsvp-radio-item">
+                                <input type="radio" name="Attendance" value="Regretfully Decline">
+                                <span data-en="Regretfully Decline" data-ml="സാധുതയില്ല / വരാൻ കഴിയുന്നില്ല" data-hi="दुर्भाग्यवश नहीं आ सकते">Regretfully Decline</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="rsvp-field-group">
+                        <label class="rsvp-field-label" for="input-msg" data-en="Message for Couple (Optional)" data-ml="നവദമ്പതികൾക്കായുള്ള സന്ദേശം (ഓപ്ഷണൽ)" data-hi="दंपति के लिए संदेश (वैकल्पिक)">Message for Couple (Optional)</label>
+                        <textarea class="rsvp-input-box rsvp-textarea" id="input-msg" name="Message" placeholder="Send your warm wishes..."></textarea>
+                    </div>
+
+                    <button type="submit" class="rsvp-submit-btn" id="submitBtn">
+                        <span id="btnText" data-en="Submit RSVP" data-ml="മറുപടി സമർപ്പിക്കുക" data-hi="आरएसवीपी जमा करें">Submit RSVP</span>
+                        <svg class="svg-icon" id="btnIcon" style="width: 15px; height: 15px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                </form>
+
+                <div class="bottom-logo-container reveal-element reveal-fade-up">
+                    <img src="assets/bottom-logo.png" alt="Logo" class="bottom-logo-img">
+                    <div class="bottom-event-date">31.12.2026</div>
+                    <div class="blessing-footer-text" data-en="Wishing a lifetime of love and happiness together" data-ml="സ്നേഹവും സന്തോഷവും നിറഞ്ഞ ഒരു ജീവിതം ആശംസിക്കുന്നു" data-hi="एक साथ प्यार और खुशी से भरे जीवन की कामना करते हैं">Wishing a lifetime of love and happiness together</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNs4CRwI0Y5P-eTRfS5OZRn9z85_vl8i1cegqvvjtkc-thSkdtD60amkcmxMCDGfSr2A/exec';
+
+        const introScreen = document.getElementById('intro-screen');
+        const langScreen = document.getElementById('lang-screen');
+        const video = document.getElementById('intro-video');
+        const bgAudio = document.getElementById('bg-audio');
+        const musicIconContainer = document.getElementById('music-icon-container');
+        const appViewport = document.getElementById('app-viewport');
+
+        const musicSVG = `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>`;
+        const muteSVG = `<svg class="svg-icon" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>`;
+
+        let isStarted = false;
+        let timerInterval = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (video) {
+                video.load();
+            }
+
+            if (introScreen) {
+                ['pointerdown', 'touchstart', 'click'].forEach(evt => {
+                    introScreen.addEventListener(evt, startExperience, { passive: true, capture: true });
+                });
+            }
+        });
+
+        function playAudioSafely() {
+            if (!bgAudio) return;
+            bgAudio.muted = false;
+            const playPromise = bgAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    if (musicIconContainer) musicIconContainer.innerHTML = musicSVG;
+                }).catch(error => {
+                    console.log("Audio play prevented: ", error);
+                });
+            }
+        }
+
+        function startExperience(e) {
+            if (e && e.stopPropagation) e.stopPropagation();
+            if (isStarted) return;
+            isStarted = true;
+
+            playAudioSafely();
+
+            if (video) {
+                video.muted = true;
+                video.currentTime = 0;
+                
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        video.onended = function() {
+                            showLanguageSelection();
+                        };
+                    }).catch(error => {
+                        console.log("Intro video playback error: ", error);
+                        showLanguageSelection();
+                    });
+                } else {
+                    showLanguageSelection();
+                }
+            } else {
+                showLanguageSelection();
+            }
+        }
+
+        function showLanguageSelection() {
+            if (introScreen) introScreen.classList.add('hidden');
+            if (langScreen) langScreen.classList.add('visible');
+        }
+
+        function setLanguage(lang) {
+            // تحديث النصوص في جميع أقسام الصفحة بناءً على اللغة المختارة
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    el.innerHTML = text;
+                }
+            });
+
+            transitionToMain();
+        }
+
+        function toggleAudio() {
+            if (!bgAudio) return;
+            if (bgAudio.paused) {
+                bgAudio.muted = false;
+                bgAudio.play().then(() => {
+                    if (musicIconContainer) musicIconContainer.innerHTML = musicSVG;
+                }).catch(err => console.log(err));
+            } else {
+                bgAudio.pause();
+                if (musicIconContainer) musicIconContainer.innerHTML = muteSVG;
+            }
+        }
+
+        function transitionToMain() {
+            const mainContent = document.getElementById('main-content');
+            
+            if (langScreen) {
+                langScreen.classList.remove('visible');
+                langScreen.classList.add('hidden');
+            }
+            if (mainContent) mainContent.classList.add('visible');
+            if (appViewport) appViewport.scrollTo({ top: 0, behavior: 'smooth' });
+
+            initScrollAnimations();
+            
+            // تحميل الخريطة فوراً عند الدخول لمنع أي تأخير في الظهور عند التمرير
+            loadMapIframe('map-wrapper-1', "St.+Thomas+Forane+Church+Velichiyani+Kanjirappally");
+        }
+
+        function scrollToWelcome() {
+            const welcomeSec = document.getElementById('welcome-section');
+            if (welcomeSec && appViewport) {
+                welcomeSec.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function initScrollAnimations() {
+            const observerOptions = {
+                root: appViewport,
+                threshold: 0.15
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal-element');
+            revealElements.forEach(el => revealObserver.observe(el));
+        }
+
+        function loadMapIframe(wrapperId, queryStr) {
+            const mapWrapper = document.getElementById(wrapperId);
+            if (mapWrapper && !mapWrapper.querySelector('iframe')) {
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://maps.google.com/maps?q=${queryStr}&z=15&output=embed`;
+                iframe.title = "Google Map Location";
+                iframe.setAttribute('loading', 'lazy');
+                mapWrapper.appendChild(iframe);
+            }
+        }
+
+        function incrementGuests() {
+            const input = document.getElementById('input-guests');
+            if (input) {
+                const val = parseInt(input.value, 10) || 0;
+                input.value = val + 1;
+            }
+        }
+
+        function decrementGuests() {
+            const input = document.getElementById('input-guests');
+            if (input) {
+                const val = parseInt(input.value, 10) || 1;
+                if (val > 1) {
+                    input.value = val - 1;
+                }
+            }
+        }
+
+        const eventDate = new Date('2026-12-31T11:00:00').getTime();
+
+        timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                if (daysEl) daysEl.innerText = days < 10 ? '0' + days : days;
+                if (hoursEl) hoursEl.innerText = hours < 10 ? '0' + hours : hours;
+                if (minutesEl) minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+                if (secondsEl) secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                if (timerInterval) clearInterval(timerInterval);
+                const container = document.querySelector(".countdown-container-oval");
+                if (container) {
+                    container.innerHTML = `<p style='color:#3b352e;'>Welcome to our wedding day!</p>`;
+                }
+            }
+        }, 1000);
+
+        function handleRSVP(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('rsvpForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+
+            submitBtn.disabled = true;
+            btnText.innerText = "Submitting...";
+
+            const formData = new FormData(form);
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(() => {
+                alert("Thank you! Your RSVP has been received successfully.");
+                form.reset();
+                document.getElementById('input-guests').value = "1";
+            })
+            .catch((error) => {
+                console.log("Submitted successfully:", error);
+                alert("Thank you! Your RSVP has been received successfully.");
+                form.reset();
+                document.getElementById('input-guests').value = "1";
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                btnText.innerText = "Submit RSVP";
+            });
+        }
+    </script>
+</body>
+</html>
