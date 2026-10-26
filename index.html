@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Monsieur+La+Doulaise&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -22,6 +22,7 @@
             --input-border: #e6d3d6;
             --label-color: #8c827a;
             --cover-bg: #eac8b8;
+            --gold-border: #caba94;
         }
 
         * {
@@ -41,7 +42,7 @@
         }
 
         .script-font {
-            font-family: 'Monsieur La Doulaise', cursive;
+            font-family: 'Great Vibes', cursive;
         }
 
         /* تثبيت عرض الشاشة والـ Full Screen تماماً للجوال والشاشات الكبيرة */
@@ -111,6 +112,18 @@
             opacity: 0.95;
         }
 
+        /* شاشة اللغات: شعار برغندي مطابق تماماً للون الأزرار (#6a1b29) */
+        .lang-screen-logo {
+            width: 110px;
+            max-width: 40%;
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(18%) sepia(59%) saturate(3475%) hue-rotate(334deg) brightness(92%) contrast(93%);
+            -webkit-filter: brightness(0) saturate(100%) invert(18%) sepia(59%) saturate(3475%) hue-rotate(334deg) brightness(92%) contrast(93%);
+        }
+
         /* Scroll Animations Base Classes */
         .reveal-element {
             opacity: 0;
@@ -174,13 +187,13 @@
             width: 100%;
             height: 100%;
             z-index: 9500;
-            background: linear-gradient(rgba(17, 17, 17, 0.75), rgba(17, 17, 17, 0.85)), url('assets/lang-bg.png') no-repeat center center;
+            background: url('assets/lang-bg.png') no-repeat center center;
             background-size: cover;
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 25px;
+            padding: 40px 15px 20px 15px;
             text-align: center;
             opacity: 0;
             transition: opacity 0.6s ease;
@@ -198,58 +211,217 @@
         }
 
         .lang-title {
-            font-family: 'Alex Brush', cursive !important;
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        }
-
-        .lang-subtitle {
-            font-size: 0.82rem;
-            color: #d4c5b9;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 35px;
             font-family: 'Playfair Display', Georgia, serif;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            font-size: 1.05rem;
+            color: #7a1d2e;
+            margin-bottom: 22px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
         }
 
         .lang-buttons-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             width: 100%;
-            max-width: 280px;
+            max-width: 240px;
+            margin: 0 auto;
         }
 
         .lang-btn {
-            background-color: rgba(20, 20, 20, 0.65);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(212, 197, 185, 0.4);
+            background-color: #ffffff;
+            border: 1.5px solid var(--gold-border);
+            color: #6a1b29;
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Montserrat', sans-serif, 'Playfair Display';
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+            width: 100%;
+        }
+
+        .lang-btn .arrow-icon {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1;
+            color: #6a1b29;
+            transition: transform 0.2s ease;
+        }
+
+        .lang-btn.active-lang,
+        .lang-btn:hover,
+        .lang-btn:active {
+            background-color: #6a1b29;
+            border-color: #8f2336;
             color: #ffffff;
-            padding: 14px 20px;
-            border-radius: 4px;
+            box-shadow: 0 4px 14px rgba(106, 27, 41, 0.3);
+        }
+
+        .lang-btn.active-lang .arrow-icon,
+        .lang-btn:hover .arrow-icon,
+        .lang-btn:active .arrow-icon {
+            color: #ffffff;
+            transform: translateX(2px);
+        }
+
+        .open-invitation-main-btn {
+            background-color: #6a1b29;
+            border: 1px solid #8f2336;
+            color: #ffffff;
+            padding: 11px 22px;
+            border-radius: 50px;
             font-size: 0.9rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Playfair Display', Georgia, serif;
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(106, 27, 41, 0.35);
+            max-width: 240px;
+            width: 100%;
+            margin-top: 22px;
+            letter-spacing: 0.5px;
         }
 
-        .lang-btn:hover, .lang-btn:active {
-            background-color: var(--button-dark);
-            border-color: var(--button-dark);
+        .open-invitation-main-btn:hover {
+            opacity: 0.92;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(106, 27, 41, 0.4);
+        }
+
+        /* --- تأثير بتلات الورد المتساقطة (#petals-container) --- */
+        #petals-container {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .falling-petal {
+            position: absolute;
+            top: -50px;
+            background-color: #6a1b29;
+            opacity: 0.75;
+            border-radius: 150% 0 150% 0;
+            animation: fallPetal linear infinite, swayPetal ease-in-out infinite;
+            will-change: transform;
+        }
+
+        @keyframes fallPetal {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
+            }
+        }
+
+        @keyframes swayPetal {
+            0%, 100% {
+                margin-left: 0px;
+            }
+            50% {
+                margin-left: 50px;
+            }
+        }
+
+        /* --- أيقونة القشط الجديدة --- */
+        .scratch-icon-img {
+            width: 140px;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto 14px auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        /* --- تنسيق الآية الإنجيلية قبل بطاقة القشط --- */
+        .scratch-bible-verse {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #554d45;
+            font-style: italic;
+            max-width: 320px;
+            margin: 0 auto 16px auto;
+            text-align: center;
+        }
+
+        /* --- بطاقة القشط (Scratch Card) لتاريخ الزفاف بلون البرغندي --- */
+        .scratch-instruction {
+            font-size: 0.75rem;
+            color: #7d6340;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 14px;
+            margin-bottom: 14px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            animation: pulseHint 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseHint {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .scratch-card-container {
+            position: relative;
+            width: 280px;
+            height: 54px;
+            margin: 0 auto 25px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(106, 27, 41, 0.2);
+            border: 1px solid var(--gold-border);
+            background-color: #6a1b29;
+            cursor: pointer;
+            touch-action: none;
+        }
+
+        .scratch-hidden-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #faf7f2;
+            z-index: 1;
+        }
+
+        .scratch-date-text {
+            font-size: 0.88rem;
+            color: #6a1b29;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .scratch-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            touch-action: none;
         }
 
         /* 2. Main Content */
@@ -257,7 +429,7 @@
             display: none;
             opacity: 0;
             transition: opacity 0.8s ease;
-            padding-bottom: 40px;
+            padding-bottom: 0px;
             width: 100%;
             position: relative;
             z-index: 10;
@@ -352,11 +524,10 @@
             }
         }
 
-        /* تنسيق الآية الإنجيلية في البانر الرئيسي */
         .hero-bible-verse {
-            font-size: 0.76rem;
+            font-size: 0.78rem;
             line-height: 1.4;
-            color: rgba(255, 255, 255, 0.88);
+            color: rgba(255, 255, 255, 0.92);
             margin-top: 2px;
             margin-bottom: 2px;
             font-family: 'Playfair Display', Georgia, serif;
@@ -372,7 +543,6 @@
             font-family: 'Playfair Display', Georgia, serif;
         }
 
-        /* جملة The Wedding of متمركزة تماماً بالمنتصف بين الآية وأسماء العروسين */
         .event-family-blessing {
             font-size: 1.05rem;
             line-height: 1.4;
@@ -386,46 +556,23 @@
         }
 
         .couple-names-title {
-            font-family: 'Monsieur La Doulaise', cursive !important;
-            font-size: 3.3rem;
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 2.8rem;
             font-weight: 400 !important;
             color: #ffffff;
             line-height: 1.1;
-            margin: 4px 0;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-            letter-spacing: 1.5px;
+            margin: 2px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            letter-spacing: 1px;
         }
 
         .couple-names-amp {
-            font-family: 'Monsieur La Doulaise', cursive !important;
+            font-family: 'Great Vibes', cursive !important;
             font-weight: 400 !important;
-            font-size: 2.3rem;
+            font-size: 2rem;
             color: #e5d8cc;
             display: block;
-            margin: 2px 0;
-        }
-
-        .banner-divider {
-            width: 60px;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.4);
-            margin: 6px auto;
-        }
-
-        .wedding-day {
-            font-size: 1rem;
-            margin-bottom: 2px;
-            color: #ffffff;
-            letter-spacing: 1px;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .wedding-date-num {
-            font-family: 'Playfair Display', serif !important;
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 12px;
+            margin: 1px 0;
         }
 
         /* Welcome Message Section */
@@ -446,68 +593,67 @@
 
         .welcome-text {
             font-family: 'Playfair Display', serif;
-            font-size: 0.98rem;
-            line-height: 1.7;
+            font-size: 0.92rem;
+            line-height: 1.6;
             color: #3b352e;
-            max-width: 360px;
-            margin: 0 auto 14px auto;
+            max-width: 350px;
+            margin: 0 auto 16px auto;
             font-style: italic;
         }
 
         .welcome-invitation-block {
-            margin-top: 18px;
+            margin-top: 14px;
             text-align: center;
         }
 
-        .welcome-event-family-blessing {
-            font-size: 0.84rem;
-            line-height: 1.5;
-            color: #554d45;
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', Georgia, serif;
-            max-width: 340px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .welcome-parents-names-block {
-            font-family: 'Montserrat', sans-serif !important;
-            font-size: 0.70rem;
-            line-height: 1.5;
-            color: #7d6340;
-            margin: 4px 0 8px 0;
-            font-weight: 500 !important;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .welcome-couple-names-title {
-            font-family: 'Monsieur La Doulaise', cursive !important;
-            font-size: 2.8rem;
+        .welcome-couple-main-title {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 2.3rem;
             font-weight: 400 !important;
             color: #3b352e;
             line-height: 1.15;
             margin: 4px 0;
-            letter-spacing: 1px;
         }
 
-        .welcome-couple-names-amp {
-            font-family: 'Monsieur La Doulaise', cursive !important;
-            font-weight: 400 !important;
-            font-size: 2.1rem;
+        .welcome-parent-info-block {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.76rem;
+            line-height: 1.5;
+            color: #7d6340;
+            margin: 2px 0;
+            font-style: italic;
+        }
+
+        .welcome-house-info-block {
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 0.68rem;
+            line-height: 1.4;
+            color: #8c827a;
+            margin: 2px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .welcome-names-amp-symbol {
+            font-family: 'Great Vibes', cursive !important;
+            font-size: 1.8rem;
             color: #7d6340;
             display: block;
-            margin: 2px 0;
+            margin: 6px 0;
         }
 
-        .welcome-date-time {
-            font-size: 0.8rem;
-            color: #8c827a;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 500;
+        .welcome-prayer-request-text {
             font-family: 'Playfair Display', Georgia, serif;
-            margin-top: 15px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: #554d45;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-style: italic;
+            max-width: 330px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Countdown Section */
@@ -614,11 +760,13 @@
         }
 
         .event-details-subtitle {
-            font-size: 0.78rem;
-            color: #aa9275;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            color: #6a1b29;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.6;
         }
 
         .floral-divider-container {
@@ -773,18 +921,27 @@
             text-align: left;
         }
 
+        .contact-name {
+            font-size: 0.9rem;
+            color: #3b352e;
+            font-weight: 600;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
         .contact-role {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: #8c827a;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-family: 'Playfair Display', Georgia, serif;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .contact-phone-num {
-            font-size: 0.9rem;
-            color: #3b352e;
+            font-size: 0.85rem;
+            color: #6a1b29;
             font-weight: 500;
             font-family: 'Playfair Display', Georgia, serif;
             letter-spacing: 0.5px;
@@ -902,8 +1059,19 @@
 
         /* RSVP Section */
         .rsvp-section-container {
-            padding: 25px 20px;
+            padding: 25px 0 0 0; /* إزالة الهوامش الجانبية تماماً لتسمح بتمدد صورة الزهور بحجم افقي كامل 100% */
             text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        /* إضافة بادينغ للعناصر الداخلية عدا قسم الفوتر */
+        .rsvp-section-container > *:not(.bottom-logo-container) {
+            padding-left: 20px;
+            padding-right: 20px;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .chair-icon-img {
@@ -936,7 +1104,7 @@
             flex-direction: column;
             gap: 15px;
             text-align: left;
-            max-width: 100%;
+            max-width: 340px;
             margin: 0 auto;
         }
 
@@ -1072,6 +1240,7 @@
             margin-top: 6px;
             transition: opacity 0.3s ease;
             font-family: 'Playfair Display', Georgia, serif;
+            width: 100%;
         }
 
         .rsvp-submit-btn:disabled {
@@ -1081,6 +1250,20 @@
 
         .rsvp-submit-btn:hover:not(:disabled) {
             opacity: 0.92;
+        }
+
+        .rsvp-blessing-quote {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.82rem;
+            font-style: italic;
+            color: #7d6340;
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Music Floating Control */
@@ -1126,14 +1309,19 @@
             height: 15px;
         }
 
-        /* Footer Logo & Date */
+        /* Footer Container & Elements */
         .bottom-logo-container {
             margin-top: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 4px;
+            position: relative;
+            width: 100vw;
+            max-width: 100%;
+            padding: 0;
+            margin-bottom: 0;
         }
 
         .bottom-logo-img {
@@ -1150,18 +1338,40 @@
             letter-spacing: 2px;
         }
 
+        /* إنزال ودمج جملة التمنيات داخل الزهور بـ margin سلبي عميق ومدروس */
         .blessing-footer-text {
             font-family: 'Alex Brush', cursive !important;
             font-size: 1.6rem;
-            color: #8c827a;
+            color: #6a1b29;
             text-align: center;
-            margin-top: 15px;
+            margin-top: 25px;
+            margin-bottom: -45px; /* تداخل عميق جداً لكي تنزل وتستقر بمنتصف باقة الزهور في الأسفل تماماً */
             letter-spacing: 1px;
             font-weight: 400 !important;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.25;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* صورة الزهور الفوترية بعرض أفقي كامل 100% من أقصى اليمين لأقصى اليسار بدون أي فواصل */
+        .footer-flowers-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.95;
+            object-fit: cover;
+            margin: 0;
         }
     </style>
 </head>
 <body>
+
+    <!-- حاوية بتلات الورد المتساقطة مثبتة على مستوى التطبيق بالكامل -->
+    <div id="petals-container"></div>
 
     <div class="app-container" id="app-viewport">
 
@@ -1186,13 +1396,30 @@
 
         <!-- 1.5 Language Selection Screen -->
         <div id="lang-screen">
-            <div class="lang-title">Choose Language</div>
-            <div class="lang-subtitle">Select your preferred language</div>
+            <img src="assets/couple-logo.png" alt="Couple Logo" class="lang-screen-logo">
+            
+            <div class="lang-title">Choose Your Preferred Language</div>
             <div class="lang-buttons-container">
-                <button class="lang-btn" onclick="setLanguage('en')">English</button>
-                <button class="lang-btn" onclick="setLanguage('ml')">മലയാളം (Malayalam)</button>
-                <button class="lang-btn" onclick="setLanguage('hi')">हिन्दी (Hindi)</button>
+                <button class="lang-btn active-lang" onclick="setLanguage('en', this)">
+                    <span>English</span>
+                    <span class="arrow-icon">&gt;</span>
+                </button>
+                <button class="lang-btn" onclick="setLanguage('ml', this)">
+                    <span>മലയാളം (Malayalam)</span>
+                    <span class="arrow-icon">&gt;</span>
+                </button>
+                <button class="lang-btn" onclick="setLanguage('hi', this)">
+                    <span>हिन्दी (Hindi)</span>
+                    <span class="arrow-icon">&gt;</span>
+                </button>
             </div>
+            
+            <button class="open-invitation-main-btn" onclick="openInvitation()">
+                <span>Open Invitation</span>
+                <svg class="svg-icon" style="width: 16px; height: 16px; fill: #ffffff;" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8l7 4.5L19 8v11zm-7-7L5 6h14l-7 6z"/>
+                </svg>
+            </button>
         </div>
 
         <!-- 2. Main Content Page -->
@@ -1205,25 +1432,21 @@
                 </video>
 
                 <div class="hero-overlay">
-                    <!-- الشعار -->
                     <img src="assets/couple-logo.png" alt="Couple DA Logo" class="unified-section-logo">
 
-                    <!-- الآية الإنجيلية -->
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                        <div class="hero-bible-verse" data-en='"For this reason a man will leave his father and mother and be united to his wife, and the two will become one flesh."' data-ml='"ഈ കാരണത്താൽ ഒരു മനുഷ്യൻ തന്റെ മാതാപിതാക്കളെ വിട്ടു ഭാര്യയോട് ചേർന്നുനിൽക്കും, ആ രണ്ടുപേരും ഒരു ശരീരമായിത്തീരും."' data-hi='"इस कारण मनुष्य अपने माता-पिता को छोड़कर अपनी पत्नी से मिला रहेगा, और वे दोनों एक तन हो जाएंगे।"'>
-                            "For this reason a man will leave his father and mother and be united to his wife, and the two will become one flesh."
+                        <div class="hero-bible-verse" data-en='"The Lord has done great things for us, and we are filled with joy."' data-ml='"കർത്താവ് നമുക്കായി വലിയ കാര്യങ്ങൾ ചെയ്തിരിക്കുന്നു; നമ്മൾ സന്തോഷഭരിതരാണ്."' data-hi='"प्रभु ने हमारे लिए महान कार्य किए हैं, और हम आनंद से भर गए हैं।"'>
+                            "The Lord has done great things for us, and we are filled with joy."
                         </div>
-                        <div class="hero-bible-reference">
-                            Ephesians 5:31
+                        <div class="hero-bible-reference" data-en="Psalm 126:3" data-ml="സങ്കീർത്തനങ്ങൾ 126:3" data-hi="भजन संहिता 126:3">
+                            Psalm 126:3
                         </div>
                     </div>
 
-                    <!-- The Wedding of -->
                     <div class="event-family-blessing" data-en="The Wedding of" data-ml="വിവാഹം" data-hi="विवाह समारोह">
                         The Wedding of
                     </div>
 
-                    <!-- أسماء العروسين -->
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
                         <div class="couple-names-title">
                             Dona
@@ -1238,14 +1461,9 @@
                         </div>
                     </div>
 
-                    <!-- الخط الفاصل واليوم والتاريخ -->
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                        <div class="banner-divider"></div>
-                        <div class="wedding-day" data-en="Thursday" data-ml="വ്യാഴാഴ്ച" data-hi="गुरुवार">Thursday</div>
-                        <div class="wedding-date-num">31.12.2026</div>
                     </div>
 
-                    <!-- Scroll Down Indicator -->
                     <div class="scroll-down-indicator" onclick="scrollToWelcome()">
                         <span class="scroll-down-text" data-en="Scroll Down" data-ml="താഴേക്ക് സ്ക്രൂൾ ചെയ്യുക" data-hi="नीचे स्क्रॉल करें">Scroll Down</span>
                         <svg class="scroll-down-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
@@ -1256,44 +1474,52 @@
             <!-- Welcome / Message Section -->
             <div class="welcome-section" id="welcome-section">
                 <img src="assets/window-flowers.png" alt="Flowers Frame Window" class="welcome-img reveal-element reveal-fade-up">
-                <p class="welcome-text reveal-element reveal-fade-up" data-en='"Two lives, two hearts, joined together in friendship, united forever in love. We are overjoyed to invite you to share in our joy as we begin this new chapter."' data-ml='"രണ്ട് ജീവിതങ്ങൾ, രണ്ട് ഹൃദയങ്ങൾ, സൗഹൃദത്തിൽ ഒന്നിച്ച്, സ്നേഹത്തിൽ എന്നേക്കുമായി ഒന്നിക്കുന്നു. ഞങ്ങളുടെ ഈ പുതിയ അധ്യായത്തിലേക്ക് നിങ്ങളെ സന്തോഷത്തോടെ സ്വാഗതം ചെയ്യുന്നു."' data-hi='"दो जीवन, दो दिल, मित्रता में जुड़े, प्रेम में हमेशा के लिए एकजुट। हम इस नए अध्याय की शुरुआत में अपनी खुशी में शामिल होने के लिए आपको आमंत्रित करते हैं।"'>
-                    "Two lives, two hearts, joined together in friendship, united forever in love. We are overjoyed to invite you to share in our joy as we begin this new chapter."
+                
+                <p class="welcome-text reveal-element reveal-fade-up" data-en='"With grateful hearts and God’s abundant blessings, we joyfully invite you to witness the beginning of a beautiful journey as two lives become one in love and faith."' data-ml='"കൃതജ്ഞതാപൂർണ്ണമായ ഹൃദയത്തോടും ദൈവത്തിന്റെ സമൃദ്ധമായ അനുഗ്രഹത്തോടും കൂടി, സ്നേഹത്തിലും വിശ്വാസത്തിലും രണ്ട് ജീവിതങ്ങൾ ഒന്നായിത്തീരുന്ന മനോഹരമായ ഈ യാത്രയുടെ ആരംഭത്തിലേക്ക് ഞങ്ങൾ നിങ്ങളെ സന്തോഷത്തോടെ ക്ഷണിക്കുന്നു."' data-hi='"कृतज्ञ हृदयों और ईश्वर के प्रचुर आशीर्वाद के साथ, हम प्रेम और विश्वास में दो जीवन के एक होने की इस सुंदर यात्रा की शुरुआत के गवाह बनने के लिए आपको आनंदपूर्वक आमंत्रित करते हैं।"'>
+                    "With grateful hearts and God’s abundant blessings, we joyfully invite you to witness the beginning of a beautiful journey as two lives become one in love and faith."
                 </p>
 
-                <!-- تفاصيل الدعوة الكاملة والأسماء في قسم الترحيب -->
                 <div class="welcome-invitation-block reveal-element reveal-fade-up">
                     
                     <div class="floral-divider-container" style="margin: 10px 0 12px 0;">
                         <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
                     </div>
 
-                    <div class="welcome-event-family-blessing" data-en="Together with their families, cordially invite you to celebrate their wedding" data-ml="കുടുംബാംഗങ്ങളുടെ സാന്നിധ്യത്തിലും അനുഗ്രഹത്തിലും ഞങ്ങളുടെ വിവാഹ ചടങ്ങിലേക്ക് നിങ്ങളെ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു" data-hi="अपने परिवार के साथ, आपको हमारे विवाह समारोह में शामिल होने के लिए सप्रेम आमंत्रण देते हैं">
-                        Together with their families, cordially invite you to celebrate their wedding
+                    <div class="welcome-couple-main-title">Aljo Ben Abraham</div>
+                    <div class="welcome-parent-info-block" data-en="S/o of Mr. Benny Joseph &amp; Mrs. Bincy Benny" data-ml="മിസ്റ്റർ ബെന്നി ജോസഫ് &amp; മിസിസ് ബിൻസി ബെന്നി എന്നിവരുടെ മകൻ" data-hi="श्री बेनी जोसेफ और श्रीमती बिंसी बेनी के पुत्र">S/o of Mr. Benny Joseph &amp; Mrs. Bincy Benny</div>
+                    <div class="welcome-house-info-block" data-en="Palathinal House, Velichiyani" data-ml="പാലത്തിനാൽ വീട്, വെളിച്ചിയാനി" data-hi="पलाथिनाल हाउस, वेलिचियानी">Palathinal House, Velichiyani</div>
+
+                    <div class="welcome-names-amp-symbol">&amp;</div>
+
+                    <div class="welcome-couple-main-title">Dona Xavier</div>
+                    <div class="welcome-parent-info-block" data-en="D/o of Mr. Xavier Joseph &amp; Mrs. Lillykutty Xavier" data-ml="മിസ്റ്റർ സേവ്യർ ജോസഫ് &amp; മിസിസ് ലില്ലിക്കുട്ടി സേവ്യർ എന്നിവരുടെ മകൾ" data-hi="श्री ज़ेवियर जोसेफ और श्रीमती लिलीकुट्टी ज़ेवियर की पुत्री">D/o of Mr. Xavier Joseph &amp; Mrs. Lillykutty Xavier</div>
+                    <div class="welcome-house-info-block" data-en="Edackattu House, Pazhayidom" data-ml="എടക്കാട്ട് വീട്, പഴയീടം" data-hi="एड़ाकाट्टू हाउस, पझैयाडोम">Edackattu House, Pazhayidom</div>
+
+                    <div class="welcome-prayer-request-text" data-en="request the honour of your presence and prayers as they exchange their wedding vows" data-ml="വിവാഹ വ്രതങ്ങൾ കൈമാറുന്ന ഈ വേളയിൽ നിങ്ങളുടെ സാന്നിധ്യവും പ്രാർത്ഥനകളും സ്നേഹപൂർവ്വം അഭ്യർത്ഥിക്കുന്നു" data-hi="अपने विवाह की प्रतिज्ञाओं के आदान-प्रदान के दौरान आपकी उपस्थिति और प्रार्थनाओं का सम्मान चाहते हैं">
+                        request the honour of your presence and prayers as they exchange their wedding vows
                     </div>
 
-                    <div class="welcome-couple-names-title">
-                        Dona Xavier
+                    <div class="floral-divider-container" style="margin: 22px 0 14px 0;">
+                        <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
                     </div>
 
-                    <div class="welcome-parents-names-block" data-en="Mr. Xavier Joseph &amp; Lillykutty Xavier<br>Edackattu House, Pazhayidom" data-ml="മിസ്റ്റർ സേവ്യർ ജോസഫ് &amp; ലില്ലിക്കുട്ടി സേവ്യർ<br>എടക്കാട്ട് വീട്, പഴയീടം" data-hi="श्री ज़ेवियर जोसेफ और लिलीकुट्टी ज़ेवियर<br>एड़ाकाट्टू हाउस, पझैयाडोम">
-                        Mr. Xavier Joseph &amp; Lillykutty Xavier<br>Edackattu House, Pazhayidom
-                    </div>
-                    
-                    <div class="welcome-couple-names-amp">
-                        &amp;
+                    <img src="assets/scratch-icon.png" alt="Scratch Icon" class="scratch-icon-img reveal-element reveal-fade-zoom">
+
+                    <div class="scratch-bible-verse reveal-element reveal-fade-up" data-en='Psalm 118:24 “This is the day the Lord has made.”' data-ml='സങ്കീർത്തനങ്ങൾ 118:24 “കർത്താവ് ഉണ്ടാക്കിയ ദിവസമാണിത്.”' data-hi='भजन संहिता 118:24 “यह वह दिन है जो प्रभु ने बनाया है।”'>
+                        Psalm 118:24 “This is the day the Lord has made.”
                     </div>
 
-                    <div class="welcome-couple-names-title">
-                        Aljo Ben Abraham
+                    <div class="scratch-instruction" data-en="Scratch here to reveal the wedding date" data-ml="വിവാഹ തീയതി കാണാൻ ഇവിടെ സ്ക്രാച്ച് ചെയ്യുക" data-hi="शादी की तारीख देखने के लिए यहां खरोंचें">
+                        Scratch here to reveal the wedding date
                     </div>
 
-                    <div class="welcome-parents-names-block" data-en="Mr. Benny Joseph &amp; Bincy Benny<br>Palathinal House, Velichiyani" data-ml="മിസ്റ്റർ ബെന്നി ജോസഫ് &amp; ബിൻസി ബെന്നി<br>പാലത്തിനാൽ വീട്, വെളിച്ചിയാനി" data-hi="श्री बेनी जोसेफ और बिंसी बेनी<br>पलाथिनाल हाउस, वेलिचियानी">
-                        Mr. Benny Joseph &amp; Bincy Benny<br>Palathinal House, Velichiyani
+                    <div class="scratch-card-container" id="scratchCardBox">
+                        <div class="scratch-hidden-content">
+                            <span class="scratch-date-text" data-en="Thursday, 31 December 2026" data-ml="വ്യാഴാഴ്ച, 2026 ഡിസംബർ 31" data-hi="गुरुवार, 31 दिसंबर 2026">Thursday, 31 December 2026</span>
+                        </div>
+                        <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
                     </div>
-                </div>
 
-                <div class="welcome-date-time reveal-element reveal-fade-up" data-en="Thursday, 31 December 2026" data-ml="വ്യാഴാഴ്ച, 2026 ഡിസംബർ 31" data-hi="गुरुवार, 31 दिसंबर 2026">
-                    Thursday, 31 December 2026
                 </div>
             </div>
 
@@ -1337,7 +1563,7 @@
                         <div class="oval-box">
                             <span class="oval-number" id="seconds">00</span>
                         </div>
-                        <span class="oval-label" data-en="Seconds" data-ml="സെക്കൻഡ്" data-hi="सेकंड">Seconds</span>
+                        <span class="oval-label" data-en="Seconds" data-ml="സെക്കൻഡ്" data-hi="സെക്കൻഡ്">Seconds</span>
                     </div>
                 </div>
             </div>
@@ -1347,11 +1573,11 @@
                 <img src="assets/divider-clock.png" alt="Divider" class="divider-img">
             </div>
 
-            <!-- Wedding Ceremony Section -->
+            <!-- Wedding Ceremony & Reception Combined Section -->
             <div class="section-padding">
                 <div class="event-details-header reveal-element reveal-fade-up">
-                    <div class="event-details-title" data-en="Wedding Ceremony" data-ml="വിവാഹ ചടങ്ങ്" data-hi="विवाह समारोह">Wedding Ceremony</div>
-                    <div class="event-details-subtitle" data-en="31-Dec-2026 • 11:00 AM" data-ml="31-ഡിസംബർ-2026 • രാവിലെ 11:00" data-hi="31-दिसंबर-2026 • सुबह 11:00 बजे">31-Dec-2026 • 11:00 AM</div>
+                    <div class="event-details-title" data-en="Wedding Ceremony &amp; Reception" data-ml="വിവാഹ ചടങ്ങും റിസപ്ഷനും" data-hi="विवाह समारोह और स्वागत">Wedding Ceremony &amp; Reception</div>
+                    <div class="event-details-subtitle" data-en="31-Dec-2026<br>Ceremony: 11:00 AM • Reception: 1:00 PM" data-ml="31-ഡിസംബർ-2026<br>ചടങ്ങ്: രാവിലെ 11:00 • റിസപ്ഷൻ: ഉച്ചയ്ക്ക് 1:00" data-hi="31-दिसंबर-2026<br>समारोह: सुबह 11:00 • स्वागत: दोपहर 1:00">31-Dec-2026<br>Ceremony: 11:00 AM • Reception: 1:00 PM</div>
                 </div>
 
                 <div class="floral-divider-container reveal-element reveal-fade-zoom">
@@ -1361,7 +1587,7 @@
                 <img src="assets/venue-icon.png" alt="Venue Icon" class="venue-icon-top-img reveal-element reveal-fade-up">
 
                 <div class="venue-name-block reveal-element reveal-fade-up">
-                    <div class="venue-title-main" data-en="St. Thomas Forane Church, Velichiyani" data-ml="സെന്റ് തോമസ് ഫോറേൻ പള്ളി, വെളിച്ചിയാനി" data-hi="सेंट थॉमस फोराने चर्च, वेलिचियानी">St. Thomas Forane Church, Velichiyani</div>
+                    <div class="venue-title-main" data-en="St. Thomas Forane Church &amp; Parish Hall, Velichiyani" data-ml="സെന്റ് തോമസ് ഫോറേൻ പള്ളിയും പാരിഷ് ഹാളും, വെളിച്ചിയാനി" data-hi="सेंट थॉमस फोराने चर्च और पैश हॉल, वेलिचियानी">St. Thomas Forane Church &amp; Parish Hall, Velichiyani</div>
                     <div class="venue-location-sub" data-en="Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India" data-ml="കോട്ടയം - കുമിളി റോഡ്, കാഞ്ഞിരപ്പള്ളി, കേരളം 686512, ഇന്ത്യ" data-hi="कोट्टायम - कुमिली रोड, कांजीरप्पल्ली, केरल 686512, भारत">Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India</div>
                 </div>
 
@@ -1373,33 +1599,7 @@
                 <div class="action-buttons-group reveal-element reveal-fade-up">
                     <a href="https://maps.google.com/?q=St.+Thomas+Forane+Church+Velichiyani+Kanjirappally" target="_blank" rel="noopener noreferrer" class="action-btn btn-maps">
                         <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-                        <span data-en="Open Church Map" data-ml="പള്ളി മാപ്പ് തുറക്കുക" data-hi="चर्च का नक्शा खोलें">Open Church Map</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Reception Section -->
-            <div class="section-padding">
-                <div class="event-details-header reveal-element reveal-fade-up">
-                    <div class="event-details-title" data-en="Reception" data-ml="റിसेप्शन" data-hi="स्वागत समारोह">Reception</div>
-                    <div class="event-details-subtitle" data-en="31-Dec-2026 • 1:00 PM" data-ml="31-ഡിസംബർ-2026 • ഉച്ചയ്ക്ക് 1:00" data-hi="31-दिसंबर-2026 • दोपहर 1:00 बजे">31-Dec-2026 • 1:00 PM</div>
-                </div>
-
-                <div class="floral-divider-container reveal-element reveal-fade-zoom">
-                    <img src="assets/floral-divider.png" alt="Floral Divider" class="floral-divider-img">
-                </div>
-
-                <img src="assets/reception-icon.png" alt="Reception Venue Icon" class="venue-icon-top-img reveal-element reveal-fade-up">
-
-                <div class="venue-name-block reveal-element reveal-fade-up">
-                    <div class="venue-title-main" data-en="St. Thomas Parish Hall, Velichiyani" data-ml="സെന്റ് തോമസ് പാരിഷ് ഹാൾ, വെളിച്ചിയാനി" data-hi="सेंट थॉमस पैश हॉल, वेलिचियानी">St. Thomas Parish Hall, Velichiyani</div>
-                    <div class="venue-location-sub" data-en="Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India" data-ml="കോട്ടയം - കുമിളി റോഡ്, കാഞ്ഞിരപ്പള്ളി, കേരളം 686512, ഇന്ത്യ" data-hi="कोट्टायम - कुमिली रोड, कांजीरप्पल्ली, केरल 686512, भारत">Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India</div>
-                </div>
-
-                <div class="action-buttons-group reveal-element reveal-fade-up">
-                    <a href="https://maps.google.com/?q=St.+Thomas+Parish+Hall+Velichiyani+Kanjirappally" target="_blank" rel="noopener noreferrer" class="action-btn btn-maps">
-                        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
-                        <span data-en="Open Hall Map" data-ml="ഹാൾ മാപ്പ് തുറക്കുക" data-hi="हॉल का नक्शा खोलें">Open Hall Map</span>
+                        <span data-en="Open Location Map" data-ml="സ്ഥലത്തിന്റെ മാപ്പ് തുറക്കുക" data-hi="स्थान का नक्शा खोलें">Open Location Map</span>
                     </a>
                 </div>
             </div>
@@ -1443,20 +1643,22 @@
                 <div class="contact-cards-wrapper reveal-element reveal-fade-up">
                     <div class="contact-card">
                         <div class="contact-info">
-                            <div class="contact-role" data-en="Father of Bride" data-ml="വധുവിന്റെ പിതാവ്" data-hi="दुल्हन के पिता">Father of Bride</div>
-                            <a href="tel:+919497820666" class="contact-phone-num">+91 9497820666</a>
+                            <div class="contact-name">Benny Joseph</div>
+                            <div class="contact-role" data-en="Father of Groom" data-ml="വരന്റെ പിതാവ്" data-hi="दूल्हे के पिता">Father of Groom</div>
+                            <a href="tel:+919447151935" class="contact-phone-num">+91 94471 51935</a>
                         </div>
-                        <a href="tel:+919497820666" class="contact-call-btn" title="Call Father of Bride" aria-label="Call Father of Bride">
+                        <a href="tel:+919447151935" class="contact-call-btn" title="Call Father of Groom" aria-label="Call Father of Groom">
                             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                         </a>
                     </div>
 
                     <div class="contact-card">
                         <div class="contact-info">
-                            <div class="contact-role" data-en="Father of Groom" data-ml="വരന്റെ പിതാവ്" data-hi="दूल्हे के पिता">Father of Groom</div>
-                            <a href="tel:+919447151935" class="contact-phone-num">+91 94471 51935</a>
+                            <div class="contact-name">Xavier Joseph</div>
+                            <div class="contact-role" data-en="Father of Bride" data-ml="വധുവിന്റെ പിതാവ്" data-hi="दुल्हन के पिता">Father of Bride</div>
+                            <a href="tel:+919497820666" class="contact-phone-num">+91 94978 20666</a>
                         </div>
-                        <a href="tel:+919447151935" class="contact-call-btn" title="Call Father of Groom" aria-label="Call Father of Groom">
+                        <a href="tel:+919497820666" class="contact-call-btn" title="Call Father of Bride" aria-label="Call Father of Bride">
                             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                         </a>
                     </div>
@@ -1510,10 +1712,19 @@
                     </button>
                 </form>
 
+                <div class="rsvp-blessing-quote reveal-element reveal-fade-up" data-en="Your presence and blessings will make our celebration truly special" data-ml="നിങ്ങളുടെ സാന്നിധ്യവും അനുഗ്രഹവും ഞങ്ങളുടെ ആഘോഷത്തെ കൂടുതൽ വിശേഷപ്പെട്ടതാക്കുന്നു" data-hi="आपकी उपस्थिति और आशीर्वाद हमारे उत्सव को वास्तव में विशेष बना देंगे">
+                    Your presence and blessings will make our celebration truly special
+                </div>
+
                 <div class="bottom-logo-container reveal-element reveal-fade-up">
                     <img src="assets/bottom-logo.png" alt="Logo" class="bottom-logo-img">
                     <div class="bottom-event-date">31.12.2026</div>
+                    
+                    <!-- جملة التمنيات المنزلة والمنغَرسة بعمق في وسط الزهور الفوترية -->
                     <div class="blessing-footer-text" data-en="Wishing a lifetime of love and happiness together" data-ml="സ്നേഹവും സന്തോഷവും നിറഞ്ഞ ഒരു ജീവിതം ആശംസിക്കുന്നു" data-hi="एक साथ प्यार और खुशी से भरे जीवन की कामना करते हैं">Wishing a lifetime of love and happiness together</div>
+                    
+                    <!-- صورة الورود الفوترية بعرض أفقي كامل 100% من أقصى اليمين لأقصى اليسار -->
+                    <img src="assets/footer-flowers.png" alt="Footer Floral Decoration" class="footer-flowers-img">
                 </div>
             </div>
 
@@ -1544,12 +1755,88 @@
                 video.load();
             }
 
+            createFallingPetals();
+
             if (introScreen) {
                 startEvents.forEach(evt => {
                     introScreen.addEventListener(evt, startExperience, { passive: true, capture: true });
                 });
             }
         });
+
+        function createFallingPetals() {
+            const container = document.getElementById('petals-container');
+            if (!container) return;
+
+            const petalsCount = 20;
+            for (let i = 0; i < petalsCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('falling-petal');
+
+                const size = Math.random() * 8 + 10;
+                const leftPos = Math.random() * 100;
+                const fallDuration = Math.random() * 6 + 6;
+                const delay = Math.random() * 8;
+
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size * 1.4}px`;
+                petal.style.left = `${leftPos}%`;
+                petal.style.animationDuration = `${fallDuration}s, ${fallDuration / 2}s`;
+                petal.style.animationDelay = `${delay}s, ${delay}s`;
+
+                container.appendChild(petal);
+            }
+        }
+
+        function initScratchCard() {
+            const canvas = document.getElementById('scratchCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const container = document.getElementById('scratchCardBox');
+            
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+
+            ctx.fillStyle = '#6a1b29';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = '13px Playfair Display, Georgia, serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Scratch Here To Reveal', canvas.width / 2, canvas.height / 2);
+
+            let isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                let clientX = e.clientX;
+                let clientY = e.clientY;
+
+                if (e.touches && e.touches[0]) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                }
+
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 22, 0, Math.PI * 2, false);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener('mousemove', scratch);
+            window.addEventListener('mouseup', () => { isDrawing = false; });
+
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: true });
+            canvas.addEventListener('touchmove', (e) => { scratch(e); }, { passive: true });
+            window.addEventListener('touchend', () => { isDrawing = false; });
+        }
 
         function playAudioSafely() {
             if (!bgAudio) return;
@@ -1569,7 +1856,6 @@
             if (isStarted) return;
             isStarted = true;
 
-            // إزالة الأحداث مباشرة لتفادي تكرار التنفيذ أو تسريب الذاكرة
             if (introScreen) {
                 startEvents.forEach(evt => {
                     introScreen.removeEventListener(evt, startExperience, { capture: true });
@@ -1606,8 +1892,13 @@
             if (langScreen) langScreen.classList.add('visible');
         }
 
-        function setLanguage(lang) {
-            // تحديث النصوص
+        function setLanguage(lang, btnElement) {
+            const langBtns = document.querySelectorAll('.lang-btn');
+            langBtns.forEach(btn => btn.classList.remove('active-lang'));
+            if (btnElement) {
+                btnElement.classList.add('active-lang');
+            }
+
             const elements = document.querySelectorAll('[data-en]');
             elements.forEach(el => {
                 const text = el.getAttribute(`data-${lang}`);
@@ -1616,7 +1907,6 @@
                 }
             });
 
-            // تحديث הـ Placeholders لنموذج الـ RSVP
             const phElements = document.querySelectorAll('[data-ph-en]');
             phElements.forEach(el => {
                 const phText = el.getAttribute(`data-ph-${lang}`);
@@ -1624,7 +1914,9 @@
                     el.setAttribute('placeholder', phText);
                 }
             });
+        }
 
+        function openInvitation() {
             transitionToMain();
         }
 
@@ -1650,6 +1942,10 @@
             }
             if (mainContent) mainContent.classList.add('visible');
             if (appViewport) appViewport.scrollTo({ top: 0, behavior: 'smooth' });
+
+            setTimeout(() => {
+                initScratchCard();
+            }, 100);
 
             initScrollAnimations();
             
