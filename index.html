@@ -876,7 +876,7 @@
 
         /* Combined Blessings & Bible Quotes Section Styles */
         .blessings-bible-section {
-            padding: 25px 20px;
+            padding: 25px 20px 0 20px;
             text-align: center;
             background-color: var(--bg-color);
         }
@@ -958,214 +958,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 500;
-        }
-
-        /* RSVP Section */
-        .rsvp-section-container {
-            padding: 25px 0 0 0;
-            text-align: center;
-            position: relative;
-            width: 100%;
-        }
-
-        .rsvp-section-container > *:not(.bottom-logo-container) {
-            padding-left: 20px;
-            padding-right: 20px;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .chair-icon-img {
-            width: 150px;
-            max-width: 55%;
-            height auto;
-            margin: 0 auto 12px auto;
-            display: block;
-            opacity: 0.9;
-        }
-
-        .rsvp-main-title {
-            font-family: 'Alex Brush', cursive !important;
-            font-size: 2.6rem;
-            color: #3b352e;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-            font-weight: 400 !important;
-        }
-
-        .rsvp-subtext-1 {
-            font-size: 0.78rem;
-            color: #a39284;
-            margin-bottom: 20px;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .rsvp-custom-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: left;
-            max-width: 340px;
-            margin: 0 auto;
-        }
-
-        .rsvp-field-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            text-align: left;
-        }
-
-        .rsvp-field-label {
-            font-size: 0.75rem;
-            color: #8c827a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .rsvp-input-box {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--input-border);
-            border-radius: 2px;
-            font-size: 0.8rem;
-            background-color: #faf7f5;
-            color: #333;
-            outline: none;
-            transition: border-color 0.3s;
-            text-align: left;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .rsvp-input-box:focus {
-            border-color: var(--button-dark);
-        }
-
-        .rsvp-input-box::placeholder {
-            color: #c4b8ad;
-        }
-
-        .rsvp-counter-box {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--input-border);
-            border-radius: 2px;
-            background-color: #faf7f5;
-            overflow: hidden;
-        }
-
-        .rsvp-counter-btn {
-            background-color: #f0e8e2;
-            color: var(--button-dark);
-            border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s ease;
-            user-select: none;
-        }
-
-        .rsvp-counter-btn:hover {
-            background-color: #e5dacd;
-        }
-
-        .rsvp-counter-input {
-            border: none;
-            background: transparent;
-            text-align: center;
-            font-size: 0.82rem;
-            color: #333;
-            width: 100%;
-            outline: none;
-            font-weight: 500;
-            -moz-appearance: textfield;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .rsvp-counter-input::-webkit-outer-spin-button,
-        .rsvp-counter-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .rsvp-radio-options {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 18px;
-            margin-top: 4px;
-        }
-
-        .rsvp-radio-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            color: #8c827a;
-            cursor: pointer;
-            font-family: 'Playfair Display', Georgia, serif;
-        }
-
-        .rsvp-radio-item input[type="radio"] {
-            accent-color: var(--button-dark);
-            width: 15px;
-            height: 15px;
-            cursor: pointer;
-        }
-
-        .rsvp-textarea {
-            resize: vertical;
-            min-height: 70px;
-        }
-
-        .rsvp-submit-btn {
-            background-color: var(--button-dark);
-            color: #ffffff;
-            border: none;
-            padding: 12px;
-            font-size: 0.78rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 2px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 6px;
-            transition: opacity 0.3s ease;
-            font-family: 'Playfair Display', Georgia, serif;
-            width: 100%;
-        }
-
-        .rsvp-submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .rsvp-submit-btn:hover:not(:disabled) {
-            opacity: 0.92;
-        }
-
-        .rsvp-blessing-quote {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 0.82rem;
-            font-style: italic;
-            color: #7d6340;
-            text-align: center;
-            margin-top: 14px;
-            line-height: 1.5;
-            letter-spacing: 0.5px;
-            max-width: 340px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* Music Floating Control */
@@ -1463,7 +1255,7 @@
                         <div class="oval-box">
                             <span class="oval-number" id="seconds">00</span>
                         </div>
-                        <span class="oval-label" data-en="Seconds" data-ml="സെക്കൻഡ്" data-hi="സെക്കൻഡ്">Seconds</span>
+                        <span class="oval-label" data-en="Seconds" data-ml="സെക്കൻഡ്" data-hi="सेकंड">Seconds</span>
                     </div>
                 </div>
             </div>
@@ -1487,7 +1279,7 @@
                 <img src="assets/venue-icon.png" alt="Venue Icon" class="venue-icon-top-img reveal-element reveal-fade-up">
 
                 <div class="venue-name-block reveal-element reveal-fade-up">
-                    <div class="venue-title-main" data-en="St. Thomas Forane Church &amp; Parish Hall, Velichiyani" data-ml="സെന്റ് തോമസ് ഫൊറോന പള്ളി &amp; പാരിഷ് ഹാൾ, വെളിച്ചിയാനി" data-hi="सेंट थॉमस फोराने चर्च और पैश हॉल, वेलिचियानी">St. Thomas Forane Church &amp; Parish Hall, Velichiyani</div>
+                    <div class="venue-title-main" data-en="St. Thomas Forane Church &amp; Parish Hall, Velichiyani" data-ml="സെന്റ് തോമസ് ഫൊറോന പള്ളി &amp; പാരിഷ് ഹാൾ, വെളിച്ചിയാനി" data-hi="सेंट थॉमस फोरेन चर्च : पैरिश हॉल, वेलिचियानी">St. Thomas Forane Church &amp; Parish Hall, Velichiyani</div>
                     <div class="venue-location-sub" data-en="Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India" data-ml="കോട്ടയം - കുമിളി റോഡ്, കാഞ്ഞിരപ്പള്ളി, കേരളം 686512, ഇന്ത്യ" data-hi="कोट्टायम - कुमिली रोड, कांजीरप्पल्ली, केरल 686512, भारत">Kottayam - Kumily Rd, Kanjirappally, Keralam 686512, India</div>
                 </div>
 
@@ -1532,59 +1324,8 @@
                     </p>
                     <div class="bible-quote-reference" data-en="Colossians 3:14" data-ml="— കൊളോസോസ് 3:14" data-hi="Colossians 3:14">Colossians 3:14</div>
                 </div>
-            </div>
 
-            <!-- RSVP Section -->
-            <div class="rsvp-section-container">
-                <img src="assets/chair-icon.png" alt="Chair Icon" class="chair-icon-img reveal-element reveal-fade-zoom">
-                
-                <div class="rsvp-main-title reveal-element reveal-fade-up">RSVP</div>
-                <div class="rsvp-subtext-1 reveal-element reveal-fade-up" data-en="Kindly respond before 15th December" data-ml="" data-hi="कृपया 15 दिसंबर से पहले उत्तर दें">Kindly respond before 15th December</div>
-
-                <form class="rsvp-custom-form reveal-element reveal-fade-zoom" id="rsvpForm" onsubmit="handleRSVP(event)">
-                    <div class="rsvp-field-group">
-                        <label class="rsvp-field-label" for="input-name" data-en="Full Name *" data-ml="പൂർണ്ണ നാമം *" data-hi="पूरा नाम *">Full Name *</label>
-                        <input type="text" class="rsvp-input-box" id="input-name" name="Name" placeholder="Your Full Name" required data-ph-en="Your Full Name" data-ph-ml="നിങ്ങളുടെ മുഴുവൻ പേര്" data-ph-hi="आपका पूरा नाम">
-                    </div>
-
-                    <div class="rsvp-field-group">
-                        <label class="rsvp-field-label" for="input-guests" data-en="Number Of Guests *" data-ml="അതിഥികളുടെ എണ്ണം *" data-hi="अतिथियों की संख्या *">Number Of Guests *</label>
-                        <div class="rsvp-counter-box">
-                            <button type="button" class="rsvp-counter-btn" onclick="decrementGuests()">-</button>
-                            <input type="number" class="rsvp-counter-input" id="input-guests" name="Guests" value="1" min="1" required placeholder="Number of guests">
-                            <button type="button" class="rsvp-counter-btn" onclick="incrementGuests()">+</button>
-                        </div>
-                    </div>
-
-                    <div class="rsvp-field-group">
-                        <label class="rsvp-field-label" data-en="Will You Attend? *" data-ml="നിങ്ങൾ പങ്കെടുക്കുമോ? *" data-hi="क्या आप शामिल होंगे? *">Will You Attend? *</label>
-                        <div class="rsvp-radio-options">
-                            <label class="rsvp-radio-item">
-                                <input type="radio" name="Attendance" value="Joyfully Accept" checked required>
-                                <span data-en="Joyfully Accept" data-ml="സന്തോഷത്തോടെ സ്വീകരിക്കുന്നു" data-hi="आनंदपूर्वक स्वीकार करते हैं">Joyfully Accept</span>
-                            </label>
-                            <label class="rsvp-radio-item">
-                                <input type="radio" name="Attendance" value="Regretfully Decline">
-                                <span data-en="Regretfully Decline" data-ml="പങ്കെടുക്കാൻ കഴിയില്ല" data-hi="दुर्भाग्यवश नहीं आ सकते">Regretfully Decline</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="rsvp-field-group">
-                        <label class="rsvp-field-label" for="input-msg" data-en="Message for Couple (Optional)" data-ml="നവദമ്പതികൾക്കായുള്ള സന്ദേശം (ഓപ്ഷണൽ)" data-hi="दंपति के लिए संदेश (वैकल्पिक)">Message for Couple (Optional)</label>
-                        <textarea class="rsvp-input-box rsvp-textarea" id="input-msg" name="Message" placeholder="Send your warm wishes..." data-ph-en="Send your warm wishes..." data-ph-ml="നിങ്ങളുടെ ആശംസകൾ അയക്കുക..." data-ph-hi="अपनी शुभकामनाएं भेजें..."></textarea>
-                    </div>
-
-                    <button type="submit" class="rsvp-submit-btn" id="submitBtn">
-                        <span id="btnText" data-en="Submit RSVP" data-ml="മറുപടി സമർപ്പിക്കുക" data-hi="आरएसवीपी जमा करें">Submit RSVP</span>
-                        <svg class="svg-icon" id="btnIcon" style="width: 15px; height: 15px; fill: #ffffff;" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                    </button>
-                </form>
-
-                <div class="rsvp-blessing-quote reveal-element reveal-fade-up" data-en="Your presence and blessings will make our celebration truly special" data-ml="നിങ്ങളുടെ സാന്നിധ്യവും പ്രാർത്ഥനകളും ഞങ്ങളുടെ ആഘോഷത്തെ കൂടുതൽ മനോഹരമാക്കുന്നു" data-hi="आपकी उपस्थिति और आशीर्वाद हमारे उत्सव को वास्तव में विशेष बना देंगे">
-                    Your presence and blessings will make our celebration truly special
-                </div>
-
+                <!-- Footer Container & Elements -->
                 <div class="bottom-logo-container reveal-element reveal-fade-up">
                     <img src="assets/bottom-logo.png" alt="Logo" class="bottom-logo-img">
                     <div class="bottom-event-date">31.12.2026</div>
@@ -1600,8 +1341,6 @@
     </div>
 
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyNs4CRwI0Y5P-eTRfS5OZRn9z85_vl8i1cegqvvjtkc-thSkdtD60amkcmxMCDGfSr2A/exec';
-
         const introScreen = document.getElementById('intro-screen');
         const langScreen = document.getElementById('lang-screen');
         const video = document.getElementById('intro-video');
@@ -1856,24 +1595,6 @@
             }
         }
 
-        function incrementGuests() {
-            const input = document.getElementById('input-guests');
-            if (input) {
-                const val = parseInt(input.value, 10) || 0;
-                input.value = val + 1;
-            }
-        }
-
-        function decrementGuests() {
-            const input = document.getElementById('input-guests');
-            if (input) {
-                const val = parseInt(input.value, 10) || 1;
-                if (val > 1) {
-                    input.value = val - 1;
-                }
-            }
-        }
-
         const eventDate = new Date('2026-12-31T11:00:00').getTime();
 
         timerInterval = setInterval(function() {
@@ -1906,39 +1627,6 @@
                 }
             }
         }, 1000);
-
-        function handleRSVP(e) {
-            e.preventDefault();
-
-            const form = document.getElementById('rsvpForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
-
-            submitBtn.disabled = true;
-            btnText.innerText = "Submitting...";
-
-            const formData = new FormData(form);
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(() => {
-                alert("Thank you! Your RSVP has been received successfully.");
-                form.reset();
-                document.getElementById('input-guests').value = "1";
-            })
-            .catch((error) => {
-                console.log("Submitted successfully:", error);
-                alert("Thank you! Your RSVP has been received successfully.");
-                form.reset();
-                document.getElementById('input-guests').value = "1";
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                btnText.innerText = "Submit RSVP";
-            });
-        }
     </script>
 </body>
 </html>
